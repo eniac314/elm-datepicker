@@ -3,10 +3,10 @@ module Demo exposing (Model, Msg(..), init, main, subscriptions, update, view)
 import Browser
 import Date exposing (..)
 import DatePicker exposing (Msg(..))
-import Time exposing (Month(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Time exposing (Month(..))
 
 
 type alias Model =
@@ -35,6 +35,7 @@ init flags =
       }
     , Cmd.map DatePickerMsg datePickerCmd
     )
+
 
 initFromApolloLanding : Flags -> ( Model, Cmd Msg )
 initFromApolloLanding flags =
@@ -93,17 +94,30 @@ getDatePickerProps =
 view : Model -> Html Msg
 view model =
     div
-        [ style "display" "flex"
-        , style "justify-content" "center"
-        ]
+        []
         [ div
-            [ style "margin-top" "40px"
-            , style "box-shadow" "0 1px 3px rgba(0, 0, 0, 0.24)"
+            [ style "display" "flex"
+            , style "justify-content" "center"
             ]
-            [ DatePicker.view
-                model.datePickerData
-                getDatePickerProps
-                |> Html.map DatePickerMsg
+            [ div
+                [ style "margin-top" "40px"
+                , style "box-shadow" "0 1px 3px rgba(0, 0, 0, 0.24)"
+                ]
+                [ DatePicker.view
+                    model.datePickerData
+                    getDatePickerProps
+                    |> Html.map DatePickerMsg
+                ]
+            , div [ style "width" "10px" ] []
+            , div
+                [ style "margin-top" "40px"
+                , style "box-shadow" "0 1px 3px rgba(0, 0, 0, 0.24)"
+                ]
+                [ DatePicker.viewUI
+                    model.datePickerData
+                    getDatePickerProps
+                    |> Html.map DatePickerMsg
+                ]
             ]
         ]
 

@@ -57,6 +57,10 @@ import Html.Attributes as HtmlAttr
 import Html.Events as HtmlEvents
 import Html.Keyed
 import Material.Icons.Hardware exposing (keyboard_arrow_left, keyboard_arrow_right)
+import Simple.Animation as Animation exposing (Animation)
+import Simple.Animation.Animated as Animated
+import Simple.Animation.Property as P
+import Simple.Transition as Transition
 import Task
 import Time exposing (Month(..), Weekday(..))
 
@@ -466,6 +470,14 @@ defaultProps =
     }
 
 
+animatedUi =
+    Animated.ui
+        { behindContent = Element.behindContent
+        , htmlAttribute = Element.htmlAttribute
+        , html = Element.html
+        }
+
+
 displayYear =
     Date.year >> String.fromInt >> Html.text
 
@@ -533,12 +545,11 @@ headerDayMonthDisplay isPreviousDate date model props =
         date
 
 
-headerDayMonthDisplayUI : Bool -> Maybe Date -> InitializedModel -> Props -> Maybe ( String, Element Msg )
+headerDayMonthDisplayUI : Bool -> Maybe Date -> InitializedModel -> Props -> Maybe (Element Msg)
 headerDayMonthDisplayUI isPreviousDate date model props =
     Maybe.map
         (\justDate ->
-            ( props.selectedDateDisplay date model.indexDate
-            , el
+            el
                 ([ Events.onClick <| SetSelectionMode Calendar
                  , Font.size 32
                  , paddingXY 10 4
@@ -559,7 +570,6 @@ headerDayMonthDisplayUI isPreviousDate date model props =
                        )
                 )
                 (text (props.selectedDateDisplay date model.indexDate))
-            )
         )
         date
 
@@ -598,6 +608,23 @@ headerSection displayDate model props =
 
 headerSectionUI : Date -> InitializedModel -> Props -> Element Msg
 headerSectionUI displayDate model props =
+    let
+        animation =
+            Animation.fromTo
+                { duration = 350
+                , options = [ Animation.easeOut ]
+                }
+                [ P.y
+                    (Maybe.map (always 0) model.previousSelectedDate
+                        |> Maybe.withDefault 40
+                    )
+                ]
+                [ P.y
+                    (Maybe.map (always -40) model.previousSelectedDate
+                        |> Maybe.withDefault 0
+                    )
+                ]
+    in
     column
         [ Background.color (rgb255 96 181 205)
         , width fill
@@ -607,29 +634,38 @@ headerSectionUI displayDate model props =
         , spacing 4
         ]
         [ headerYearDisplayUI displayDate model props
-        , Keyed.column
-            []
-            [ --Maybe.withDefault
-              --    ( "previous", Element.none )
-              --    (headerDayMonthDisplayUI True
-              --        model.previousSelectedDate
-              --        model
-              --        props
-              --    )
-              --,
-              Maybe.withDefault
-                ( "current", Element.none )
-                (headerDayMonthDisplayUI False
-                    (if isJust model.selectedDate then
-                        model.selectedDate
-
-                     else
-                        Just model.today
-                    )
-                    model
-                    props
-                )
+        , Keyed.el
+            [ height (px 40)
+            , clipY
             ]
+            ( model.previousSelectedDate
+                |> Maybe.map toRataDie
+                |> Maybe.map String.fromInt
+                |> Maybe.withDefault ""
+            , animatedUi column
+                animation
+                []
+                [ Maybe.withDefault
+                    Element.none
+                    (headerDayMonthDisplayUI True
+                        model.previousSelectedDate
+                        model
+                        props
+                    )
+                , Maybe.withDefault
+                    Element.none
+                    (headerDayMonthDisplayUI False
+                        (if isJust model.selectedDate then
+                            model.selectedDate
+
+                         else
+                            Just model.today
+                        )
+                        model
+                        props
+                    )
+                ]
+            )
         ]
 
 
@@ -993,15 +1029,13 @@ previousMonthBody model props =
         model.previousMonthMap
 
 
-previousMonthBodyUI : InitializedModel -> Props -> Maybe ( String, Element Msg )
+previousMonthBodyUI : InitializedModel -> Props -> Maybe (Element Msg)
 previousMonthBodyUI model props =
     Maybe.map
         (\previousMonthMap ->
-            ( getMonthKey model.indexDate ++ "-previous"
-            , el
+            el
                 [ width fill ]
                 (daySectionMonthUI { model | currentMonthMap = previousMonthMap } props)
-            )
         )
         model.previousMonthMap
 
@@ -1028,21 +1062,55 @@ calendarBody model props =
 
 calendarBodyUI : InitializedModel -> Props -> Element Msg
 calendarBodyUI model props =
-    Keyed.row
-        [ width fill
-        , height (px 240)
-        , Font.color (rgba 0 0 0 0.82)
-        , paddingXY 0 2
+    let
+        animation =
+            Animation.fromTo
+                { duration = 350
+                , options = [ Animation.easeOut ]
+                }
+                [ P.x
+                    (Maybe.map (always origin) model.previousMonthMap
+                        |> Maybe.withDefault 0
+                    )
+                ]
+                [ P.x
+                    (Maybe.map (always destination) model.previousMonthMap
+                        |> Maybe.withDefault 0
+                    )
+                ]
 
-        --, clip
+        ( origin, destination, body ) =
+            if model.monthChange == Next then
+                ( 0
+                , -280
+                , [ Maybe.withDefault Element.none
+                        (previousMonthBodyUI model props)
+                  , daySectionMonthUI model props
+                  ]
+                )
+
+            else
+                ( -280
+                , 0
+                , [ daySectionMonthUI model props
+                  , Maybe.withDefault Element.none
+                        (previousMonthBodyUI model props)
+                  ]
+                )
+    in
+    Keyed.el
+        [ clipX
+        , width fill
+        , height (px 244)
         ]
-        [ --Maybe.withDefault ( "only", Element.none )
-          --    (previousMonthBodyUI model props)
-          --,
-          ( getMonthKey model.indexDate
-          , daySectionMonthUI model props
-          )
-        ]
+        ( getMonthKey model.indexDate
+        , animatedUi row
+            animation
+            [ Font.color (rgba 0 0 0 0.82)
+            , paddingXY 10 2
+            ]
+            body
+        )
 
 
 bottomSection : InitializedModel -> Props -> Html.Html Msg

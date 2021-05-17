@@ -55,7 +55,6 @@ import Html as Html
 import Html.Attributes as HtmlAttr
 import Html.Events as HtmlEvents
 import Html.Keyed
-import Material.Icons.Hardware exposing (keyboard_arrow_left, keyboard_arrow_right)
 import Simple.Animation as Animation exposing (Animation)
 import Simple.Animation.Animated as Animated
 import Simple.Animation.Property as P

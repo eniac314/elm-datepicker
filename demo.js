@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.bo.at === region.bG.at)
+	if (region.bo.as === region.bG.as)
 	{
-		return 'on line ' + region.bo.at;
+		return 'on line ' + region.bo.as;
 	}
-	return 'on lines ' + region.bo.at + ' through ' + region.bG.at;
+	return 'on lines ' + region.bo.as + ' through ' + region.bG.as;
 }
 
 
@@ -2704,9 +2704,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		S: func(record.S),
+		R: func(record.R),
 		bp: record.bp,
-		bj: record.bj
+		bi: record.bi
 	}
 });
 
@@ -2974,11 +2974,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.S;
+		var message = !tag ? value : tag < 3 ? value.a : value.R;
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.bp;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.bj) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.bi) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -4234,8 +4234,8 @@ function _Browser_getViewport()
 	return {
 		ck: _Browser_getScene(),
 		cv: {
-			a$: _Browser_window.pageXOffset,
-			a1: _Browser_window.pageYOffset,
+			aU: _Browser_window.pageXOffset,
+			aW: _Browser_window.pageYOffset,
 			cy: _Browser_doc.documentElement.clientWidth,
 			bN: _Browser_doc.documentElement.clientHeight
 		}
@@ -4276,8 +4276,8 @@ function _Browser_getViewportOf(id)
 				bN: node.scrollHeight
 			},
 			cv: {
-				a$: node.scrollLeft,
-				a1: node.scrollTop,
+				aU: node.scrollLeft,
+				aW: node.scrollTop,
 				cy: node.clientWidth,
 				bN: node.clientHeight
 			}
@@ -4311,14 +4311,14 @@ function _Browser_getElement(id)
 		return {
 			ck: _Browser_getScene(),
 			cv: {
-				a$: x,
-				a1: y,
+				aU: x,
+				aW: y,
 				cy: _Browser_doc.documentElement.clientWidth,
 				bN: _Browser_doc.documentElement.clientHeight
 			},
 			dc: {
-				a$: x + rect.left,
-				a1: y + rect.top,
+				aU: x + rect.left,
+				aW: y + rect.top,
 				cy: rect.width,
 				bN: rect.height
 			}
@@ -4844,25 +4844,25 @@ var $elm$core$Array$treeFromBuilder = F2(
 	});
 var $elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.h) {
+		if (!builder.f) {
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.k),
+				$elm$core$Elm$JsArray$length(builder.i),
 				$elm$core$Array$shiftStep,
 				$elm$core$Elm$JsArray$empty,
-				builder.k);
+				builder.i);
 		} else {
-			var treeLen = builder.h * $elm$core$Array$branchFactor;
+			var treeLen = builder.f * $elm$core$Array$branchFactor;
 			var depth = $elm$core$Basics$floor(
 				A2($elm$core$Basics$logBase, $elm$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.m) : builder.m;
-			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.h);
+			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.j) : builder.j;
+			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.f);
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.k) + treeLen,
+				$elm$core$Elm$JsArray$length(builder.i) + treeLen,
 				A2($elm$core$Basics$max, 5, depth * $elm$core$Array$shiftStep),
 				tree,
-				builder.k);
+				builder.i);
 		}
 	});
 var $elm$core$Basics$idiv = _Basics_idiv;
@@ -4875,7 +4875,7 @@ var $elm$core$Array$initializeHelp = F5(
 				return A2(
 					$elm$core$Array$builderToArray,
 					false,
-					{m: nodeList, h: (len / $elm$core$Array$branchFactor) | 0, k: tail});
+					{j: nodeList, f: (len / $elm$core$Array$branchFactor) | 0, i: tail});
 			} else {
 				var leaf = $elm$core$Array$Leaf(
 					A3($elm$core$Elm$JsArray$initialize, $elm$core$Array$branchFactor, fromIndex, fn));
@@ -5457,7 +5457,7 @@ var $elm$time$Time$now = _Time_now($elm$time$Time$millisToPosix);
 var $justinmimbs$date$Date$today = A3($elm$core$Task$map2, $justinmimbs$date$Date$fromPosix, $elm$time$Time$here, $elm$time$Time$now);
 var $abradley2$elm_datepicker$DatePicker$init = function (id) {
 	return _Utils_Tuple2(
-		{s: $elm$core$Maybe$Nothing, D: id, f: $elm$core$Maybe$Nothing, p: 0, w: $elm$core$Maybe$Nothing, t: $elm$core$Maybe$Nothing, d: $elm$core$Maybe$Nothing, n: 0, l: $elm$core$Maybe$Nothing, x: $elm$core$Maybe$Nothing},
+		{A: $elm$core$Maybe$Nothing, Q: id, n: $elm$core$Maybe$Nothing, B: 0, E: $elm$core$Maybe$Nothing, y: $elm$core$Maybe$Nothing, m: $elm$core$Maybe$Nothing, u: 0, w: $elm$core$Maybe$Nothing, H: $elm$core$Maybe$Nothing},
 		A2($elm$core$Task$perform, $abradley2$elm_datepicker$DatePicker$GetToday, $justinmimbs$date$Date$today));
 };
 var $elm$core$Platform$Cmd$map = _Platform_map;
@@ -5466,7 +5466,7 @@ var $abradley2$elm_datepicker$Demo$init = function (flags) {
 	var datePickerData = _v0.a;
 	var datePickerCmd = _v0.b;
 	return _Utils_Tuple2(
-		{Z: datePickerData, d: $elm$core$Maybe$Nothing},
+		{ah: datePickerData, m: $elm$core$Maybe$Nothing},
 		A2($elm$core$Platform$Cmd$map, $abradley2$elm_datepicker$Demo$DatePickerMsg, datePickerCmd));
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -5610,14 +5610,14 @@ var $justinmimbs$date$Date$toOrdinalDate = function (_v0) {
 	var rd = _v0;
 	var y = $justinmimbs$date$Date$year(rd);
 	return {
-		bi: rd - $justinmimbs$date$Date$daysBeforeYear(y),
+		bh: rd - $justinmimbs$date$Date$daysBeforeYear(y),
 		cB: y
 	};
 };
 var $justinmimbs$date$Date$toCalendarDate = function (_v0) {
 	var rd = _v0;
 	var date = $justinmimbs$date$Date$toOrdinalDate(rd);
-	return A3($justinmimbs$date$Date$toCalendarDateHelp, date.cB, 0, date.bi);
+	return A3($justinmimbs$date$Date$toCalendarDateHelp, date.cB, 0, date.bh);
 };
 var $justinmimbs$date$Date$day = A2(
 	$elm$core$Basics$composeR,
@@ -5823,21 +5823,21 @@ var $abradley2$elm_datepicker$DatePicker$setIndexDate = F2(
 		return _Utils_update(
 			model,
 			{
-				s: $elm$core$Maybe$Just(monthMap),
-				f: $elm$core$Maybe$Just(
+				A: $elm$core$Maybe$Just(monthMap),
+				n: $elm$core$Maybe$Just(
 					A2(
 						$abradley2$elm_datepicker$DatePicker$Util$setDayOfMonth,
 						indexDate,
 						$justinmimbs$date$Date$day(indexDate))),
-				w: A2(
+				E: A2(
 					$elm$core$Maybe$withDefault,
 					$elm$core$Maybe$Nothing,
 					A2(
 						$elm$core$Maybe$map,
 						function (prevIndexDate) {
-							return A2($abradley2$elm_datepicker$DatePicker$isNewMonth, indexDate, prevIndexDate) ? model.s : $elm$core$Maybe$Nothing;
+							return A2($abradley2$elm_datepicker$DatePicker$isNewMonth, indexDate, prevIndexDate) ? model.A : $elm$core$Maybe$Nothing;
 						},
-						model.f))
+						model.n))
 			});
 	});
 var $elm$browser$Browser$Dom$setViewportOf = _Browser_setViewportOf;
@@ -5854,9 +5854,9 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 					_Utils_update(
 						newModel,
 						{
-							t: $elm$core$Maybe$Just(previousDate),
-							d: $elm$core$Maybe$Just(date),
-							n: 0
+							y: $elm$core$Maybe$Just(previousDate),
+							m: $elm$core$Maybe$Just(date),
+							u: 0
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 4:
@@ -5865,7 +5865,7 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						newModel,
-						{p: 2}),
+						{B: 2}),
 					$elm$core$Platform$Cmd$none);
 			case 3:
 				var newIndexDate = msg.a;
@@ -5873,7 +5873,7 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						newModel,
-						{p: 1}),
+						{B: 1}),
 					$elm$core$Platform$Cmd$none);
 			case 2:
 				var today = msg.a;
@@ -5882,24 +5882,24 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 					_Utils_update(
 						updatedModel,
 						{
-							l: $elm$core$Maybe$Just(
+							w: $elm$core$Maybe$Just(
 								A2(
 									$abradley2$elm_datepicker$DatePicker$Util$setDayOfMonth,
 									today,
 									$justinmimbs$date$Date$day(today))),
-							x: $elm$core$Maybe$Just(
-								A2($abradley2$elm_datepicker$DatePicker$defaultedYearList, model.x, today))
+							H: $elm$core$Maybe$Just(
+								A2($abradley2$elm_datepicker$DatePicker$defaultedYearList, model.H, today))
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 7:
 				var mode = msg.a;
-				var _v1 = _Utils_Tuple3(mode, model.l, model.x);
+				var _v1 = _Utils_Tuple3(mode, model.w, model.H);
 				if (_v1.a === 1) {
 					if ((!_v1.b.$) && (!_v1.c.$)) {
 						var _v2 = _v1.a;
 						var today = _v1.b.a;
 						var yearList = _v1.c.a;
-						var workingDate = A2($elm$core$Maybe$withDefault, today, model.d);
+						var workingDate = A2($elm$core$Maybe$withDefault, today, model.m);
 						var selectedYearIndex = $elm$core$List$length(
 							A2(
 								$elm$core$List$partition,
@@ -5910,11 +5910,11 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 								},
 								yearList).a);
 						var yOffset = (selectedYearIndex * 40) - (4 * 40);
-						var scrollId = 'edp-year-picker-' + model.D;
+						var scrollId = 'edp-year-picker-' + model.Q;
 						return _Utils_Tuple2(
 							_Utils_update(
 								model,
-								{n: mode}),
+								{u: mode}),
 							A2(
 								$elm$core$Task$attempt,
 								function (_v3) {
@@ -5929,7 +5929,7 @@ var $abradley2$elm_datepicker$DatePicker$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{p: 2, n: mode}),
+							{B: 2, u: mode}),
 						$elm$core$Platform$Cmd$none);
 				}
 			default:
@@ -5951,7 +5951,7 @@ var $abradley2$elm_datepicker$Demo$update = F2(
 						_Utils_update(
 							newModel,
 							{
-								d: $elm$core$Maybe$Just(currentSelectedDate)
+								m: $elm$core$Maybe$Just(currentSelectedDate)
 							}),
 						cmd);
 				} else {
@@ -5964,10 +5964,10 @@ var $abradley2$elm_datepicker$Demo$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{Z: data}),
+							{ah: data}),
 						A2($elm$core$Platform$Cmd$map, $abradley2$elm_datepicker$Demo$DatePickerMsg, cmd));
 				}(
-					A2($abradley2$elm_datepicker$DatePicker$update, datePickerMsg, model.Z)));
+					A2($abradley2$elm_datepicker$DatePicker$update, datePickerMsg, model.ah)));
 		}
 	});
 var $elm$html$Html$div = _VirtualDom_node('div');
@@ -6130,22 +6130,22 @@ var $abradley2$elm_datepicker$DatePicker$Util$getDayMonthText = function (date) 
 		$justinmimbs$date$Date$day(date)))));
 };
 var $abradley2$elm_datepicker$DatePicker$defaultProps = {
-	aC: function (date) {
+	a0: function (date) {
 		return true;
 	},
-	aj: F2(
+	aA: F2(
 		function (year, month) {
 			return true;
 		}),
-	P: function (year) {
+	aq: function (year) {
 		return true;
 	},
-	aD: 'CANCEL',
-	aK: $abradley2$elm_datepicker$DatePicker$Util$daySymbol,
-	aN: false,
-	aQ: $abradley2$elm_datepicker$DatePicker$Util$monthDisplay,
-	aS: 'OK',
-	av: F2(
+	a1: 'CANCEL',
+	a3: $abradley2$elm_datepicker$DatePicker$Util$daySymbol,
+	a9: false,
+	bd: $abradley2$elm_datepicker$DatePicker$Util$monthDisplay,
+	bf: 'OK',
+	bm: F2(
 		function (maybeDate, date) {
 			return A2(
 				$elm$core$Maybe$withDefault,
@@ -6165,653 +6165,6 @@ var $abradley2$elm_datepicker$DatePicker$CancelClicked = {$: 6};
 var $abradley2$elm_datepicker$DatePicker$SubmitClicked = function (a) {
 	return {$: 5, a: a};
 };
-var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
-var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm$html$Html$Attributes$classList = function (classes) {
-	return $elm$html$Html$Attributes$class(
-		A2(
-			$elm$core$String$join,
-			' ',
-			A2(
-				$elm$core$List$map,
-				$elm$core$Tuple$first,
-				A2($elm$core$List$filter, $elm$core$Tuple$second, classes))));
-};
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 0, a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $abradley2$elm_datepicker$DatePicker$bottomSection = F2(
-	function (model, props) {
-		var disableOk = _Utils_eq(model.d, $elm$core$Maybe$Nothing);
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-body-section edp-bottom-section')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$button,
-					_List_fromArray(
-						[
-							$elm$html$Html$Events$onClick($abradley2$elm_datepicker$DatePicker$CancelClicked),
-							$elm$html$Html$Attributes$class('edp-button')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(props.aD)
-						])),
-					A2(
-					$elm$html$Html$button,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$classList(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('edp-button', true),
-									_Utils_Tuple2(
-									'edp-disabled',
-									_Utils_eq(model.d, $elm$core$Maybe$Nothing))
-								])),
-							$elm$html$Html$Events$onClick(
-							function () {
-								var _v0 = model.d;
-								if (!_v0.$) {
-									var date = _v0.a;
-									return $abradley2$elm_datepicker$DatePicker$SubmitClicked(date);
-								} else {
-									return $abradley2$elm_datepicker$DatePicker$NoOp;
-								}
-							}())
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(props.aS)
-						]))
-				]));
-	});
-var $abradley2$elm_datepicker$DatePicker$DateSelected = F2(
-	function (a, b) {
-		return {$: 1, a: a, b: b};
-	});
-var $elm$core$Basics$not = _Basics_not;
-var $justinmimbs$date$Date$toRataDie = function (_v0) {
-	var rd = _v0;
-	return rd;
-};
-var $abradley2$elm_datepicker$DatePicker$daySectionMonth = F2(
-	function (model, props) {
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-body-section')
-				]),
-			A2(
-				$elm$core$List$map,
-				function (_v0) {
-					var dayNum = _v0.a;
-					var date = _v0.b;
-					var isToday = _Utils_eq(
-						$justinmimbs$date$Date$toRataDie(model.l),
-						$justinmimbs$date$Date$toRataDie(date));
-					var isSelected = function () {
-						var _v3 = model.d;
-						if (!_v3.$) {
-							var selected = _v3.a;
-							return _Utils_eq(
-								$justinmimbs$date$Date$toRataDie(selected),
-								$justinmimbs$date$Date$toRataDie(date));
-						} else {
-							return false;
-						}
-					}();
-					var isPlaceholder = !dayNum;
-					var canSelect = (!isPlaceholder) && props.aC(date);
-					return A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$classList(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('edp-column edp-day-number', true),
-										_Utils_Tuple2('edp-empty-column', !dayNum),
-										_Utils_Tuple2('edp-disabled-column', (!isPlaceholder) && (!canSelect)),
-										_Utils_Tuple2('edp-day-number-selected', isSelected),
-										_Utils_Tuple2('edp-day-number-today', isToday)
-									])),
-								$elm$html$Html$Events$onClick(
-								function () {
-									var _v1 = _Utils_Tuple2(canSelect, model.d);
-									if (_v1.a) {
-										if (!_v1.b.$) {
-											var previousSelected = _v1.b.a;
-											return _Utils_eq(
-												$justinmimbs$date$Date$toRataDie(previousSelected),
-												$justinmimbs$date$Date$toRataDie(date)) ? $abradley2$elm_datepicker$DatePicker$NoOp : A2($abradley2$elm_datepicker$DatePicker$DateSelected, date, previousSelected);
-										} else {
-											var _v2 = _v1.b;
-											return A2($abradley2$elm_datepicker$DatePicker$DateSelected, date, model.l);
-										}
-									} else {
-										return $abradley2$elm_datepicker$DatePicker$NoOp;
-									}
-								}())
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(
-								isPlaceholder ? '.' : $elm$core$String$fromInt(dayNum))
-							]));
-				},
-				model.s));
-	});
-var $abradley2$elm_datepicker$DatePicker$getMonthKey = function (date) {
-	return A2(
-		$abradley2$elm_datepicker$DatePicker$Util$getMonthInfo,
-		$justinmimbs$date$Date$month(date),
-		$abradley2$elm_datepicker$DatePicker$Util$monthDisplay).a;
-};
-var $elm$virtual_dom$VirtualDom$keyedNode = function (tag) {
-	return _VirtualDom_keyedNode(
-		_VirtualDom_noScript(tag));
-};
-var $elm$html$Html$Keyed$node = $elm$virtual_dom$VirtualDom$keyedNode;
-var $abradley2$elm_datepicker$DatePicker$previousMonthBody = F2(
-	function (model, props) {
-		return A2(
-			$elm$core$Maybe$map,
-			function (previousMonthMap) {
-				return _Utils_Tuple2(
-					$abradley2$elm_datepicker$DatePicker$getMonthKey(model.f) + '-previous',
-					A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$classList(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('edp-month-slider', true),
-										_Utils_Tuple2('edp-out-next', model.p === 2),
-										_Utils_Tuple2('edp-out-previous', model.p === 1)
-									]))
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$abradley2$elm_datepicker$DatePicker$daySectionMonth,
-								_Utils_update(
-									model,
-									{s: previousMonthMap}),
-								props)
-							])));
-			},
-			model.w);
-	});
-var $abradley2$elm_datepicker$DatePicker$calendarBody = F2(
-	function (model, props) {
-		return A3(
-			$elm$html$Html$Keyed$node,
-			'div',
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-month-wrapper')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$core$Maybe$withDefault,
-					_Utils_Tuple2(
-						'only',
-						A2($elm$html$Html$div, _List_Nil, _List_Nil)),
-					A2($abradley2$elm_datepicker$DatePicker$previousMonthBody, model, props)),
-					_Utils_Tuple2(
-					$abradley2$elm_datepicker$DatePicker$getMonthKey(model.f),
-					A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$classList(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('edp-month-slider', true),
-										_Utils_Tuple2('edp-in-next', model.p === 2),
-										_Utils_Tuple2('edp-in-previous', model.p === 1)
-									]))
-							]),
-						_List_fromArray(
-							[
-								A2($abradley2$elm_datepicker$DatePicker$daySectionMonth, model, props)
-							])))
-				]));
-	});
-var $abradley2$elm_datepicker$DatePicker$SetSelectionMode = function (a) {
-	return {$: 7, a: a};
-};
-var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay = F4(
-	function (isPreviousDate, date, model, props) {
-		return A2(
-			$elm$core$Maybe$map,
-			function (justDate) {
-				return _Utils_Tuple2(
-					A2(props.av, date, model.f),
-					A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$classList(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('edp-header-month-day', true),
-										_Utils_Tuple2('edp-header-active', !model.n),
-										_Utils_Tuple2('edp-month-day-previous', isPreviousDate)
-									])),
-								$elm$html$Html$Events$onClick(
-								$abradley2$elm_datepicker$DatePicker$SetSelectionMode(0))
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(
-								A2(props.av, date, model.f))
-							])));
-			},
-			date);
-	});
-var $abradley2$elm_datepicker$DatePicker$YearPicker = 1;
-var $abradley2$elm_datepicker$DatePicker$displayYear = A2(
-	$elm$core$Basics$composeR,
-	$justinmimbs$date$Date$year,
-	A2($elm$core$Basics$composeR, $elm$core$String$fromInt, $elm$html$Html$text));
-var $abradley2$elm_datepicker$DatePicker$headerYearDisplay = F3(
-	function (displayDate, model, props) {
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$classList(
-					_List_fromArray(
-						[
-							_Utils_Tuple2('edp-header-year', true),
-							_Utils_Tuple2('edp-header-active', model.n === 1)
-						])),
-					$elm$html$Html$Events$onClick(
-					$abradley2$elm_datepicker$DatePicker$SetSelectionMode(1))
-				]),
-			_List_fromArray(
-				[
-					$abradley2$elm_datepicker$DatePicker$displayYear(displayDate)
-				]));
-	});
-var $abradley2$elm_datepicker$DatePicker$Util$isJust = A2(
-	$elm$core$Basics$composeR,
-	$elm$core$Maybe$map(
-		function (_v0) {
-			return true;
-		}),
-	$elm$core$Maybe$withDefault(false));
-var $abradley2$elm_datepicker$DatePicker$headerSection = F3(
-	function (displayDate, model, props) {
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-header-section')
-				]),
-			_List_fromArray(
-				[
-					A3($abradley2$elm_datepicker$DatePicker$headerYearDisplay, displayDate, model, props),
-					A3(
-					$elm$html$Html$Keyed$node,
-					'div',
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('edp-month-day-wrapper')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$core$Maybe$withDefault,
-							_Utils_Tuple2(
-								'previous',
-								A2($elm$html$Html$div, _List_Nil, _List_Nil)),
-							A4($abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay, true, model.t, model, props)),
-							A2(
-							$elm$core$Maybe$withDefault,
-							_Utils_Tuple2(
-								'current',
-								A2($elm$html$Html$div, _List_Nil, _List_Nil)),
-							A4(
-								$abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay,
-								false,
-								$abradley2$elm_datepicker$DatePicker$Util$isJust(model.d) ? model.d : $elm$core$Maybe$Just(model.l),
-								model,
-								props))
-						]))
-				]));
-	});
-var $elm$core$Maybe$map4 = F5(
-	function (func, ma, mb, mc, md) {
-		if (ma.$ === 1) {
-			return $elm$core$Maybe$Nothing;
-		} else {
-			var a = ma.a;
-			if (mb.$ === 1) {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var b = mb.a;
-				if (mc.$ === 1) {
-					return $elm$core$Maybe$Nothing;
-				} else {
-					var c = mc.a;
-					if (md.$ === 1) {
-						return $elm$core$Maybe$Nothing;
-					} else {
-						var d = md.a;
-						return $elm$core$Maybe$Just(
-							A4(func, a, b, c, d));
-					}
-				}
-			}
-		}
-	});
-var $abradley2$elm_datepicker$DatePicker$NextMonth = function (a) {
-	return {$: 4, a: a};
-};
-var $abradley2$elm_datepicker$DatePicker$PreviousMonth = function (a) {
-	return {$: 3, a: a};
-};
-var $abradley2$elm_datepicker$DatePicker$monthChangeSection = F2(
-	function (model, props) {
-		var year = $justinmimbs$date$Date$year(model.f);
-		var previousMonthIndexDate = A3($justinmimbs$date$Date$add, 1, -1, model.f);
-		var nextMonthIndexDate = A3($justinmimbs$date$Date$add, 1, 1, model.f);
-		var canSelectPrevious = A2(
-			props.aj,
-			year,
-			$justinmimbs$date$Date$month(previousMonthIndexDate)) && props.P(
-			$justinmimbs$date$Date$year(previousMonthIndexDate));
-		var canSelectNext = A2(
-			props.aj,
-			year,
-			$justinmimbs$date$Date$month(nextMonthIndexDate)) && props.P(
-			$justinmimbs$date$Date$year(nextMonthIndexDate));
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-month-change-section edp-body-section')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$classList(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('edp-caret-button', true),
-									_Utils_Tuple2('edp-disabled', !canSelectPrevious)
-								])),
-							$elm$html$Html$Events$onClick(
-							canSelectPrevious ? $abradley2$elm_datepicker$DatePicker$PreviousMonth(previousMonthIndexDate) : $abradley2$elm_datepicker$DatePicker$NoOp)
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$classList(
-									_List_fromArray(
-										[
-											_Utils_Tuple2('edp-caret edp-caret-left', true),
-											_Utils_Tuple2('edp-disabled', !canSelectPrevious)
-										]))
-								]),
-							_List_Nil)
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm$html$Html$text(
-							function () {
-								var _v0 = A2(
-									$abradley2$elm_datepicker$DatePicker$Util$getMonthInfo,
-									$justinmimbs$date$Date$month(model.f),
-									props.aQ);
-								var monthFull = _v0.a;
-								var monthInt = _v0.b;
-								return monthFull + (' ' + $elm$core$String$fromInt(
-									$justinmimbs$date$Date$year(model.f)));
-							}())
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$classList(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('edp-caret-button', true),
-									_Utils_Tuple2('edp-disabled', !canSelectNext)
-								])),
-							$elm$html$Html$Events$onClick(
-							canSelectNext ? $abradley2$elm_datepicker$DatePicker$NextMonth(nextMonthIndexDate) : $abradley2$elm_datepicker$DatePicker$NoOp)
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$classList(
-									_List_fromArray(
-										[
-											_Utils_Tuple2('edp-caret edp-caret-right', true),
-											_Utils_Tuple2('edp-disabled', !canSelectNext)
-										]))
-								]),
-							_List_Nil)
-						]))
-				]));
-	});
-var $abradley2$elm_datepicker$DatePicker$weekSection = F2(
-	function (model, props) {
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('edp-body-section')
-				]),
-			A2(
-				$elm$core$List$map,
-				function (symbol) {
-					return A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('edp-column edp-day-symbol')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(symbol)
-							]));
-				},
-				A2(
-					$elm$core$List$map,
-					props.aK,
-					_List_fromArray(
-						[6, 0, 1, 2, 3, 4, 5]))));
-	});
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
-var $abradley2$elm_datepicker$DatePicker$yearSection = F2(
-	function (model, props) {
-		var workingDate = A2($elm$core$Maybe$withDefault, model.l, model.d);
-		var applyYear = F2(
-			function (dt, year) {
-				return A3(
-					$justinmimbs$date$Date$fromCalendarDate,
-					year,
-					$justinmimbs$date$Date$month(dt),
-					$justinmimbs$date$Date$day(dt));
-			});
-		var viewYear = function (year) {
-			var canSelect = props.P(year);
-			return A2(
-				$elm$html$Html$div,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$button,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$classList(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('edp-button', true),
-										_Utils_Tuple2('edp-year-button', true),
-										_Utils_Tuple2(
-										'edp-year-button-selected',
-										_Utils_eq(
-											year,
-											$justinmimbs$date$Date$year(workingDate))),
-										_Utils_Tuple2('edp-disabled', !canSelect)
-									])),
-								$elm$html$Html$Events$onClick(
-								canSelect ? A2(
-									$abradley2$elm_datepicker$DatePicker$DateSelected,
-									A2(applyYear, workingDate, year),
-									workingDate) : $abradley2$elm_datepicker$DatePicker$NoOp)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(
-								$elm$core$String$fromInt(year))
-							]))
-					]));
-		};
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$id('edp-year-picker-' + model.D),
-					$elm$html$Html$Attributes$class('edp-year-picker')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('edp-year-picker-body')
-						]),
-					A2($elm$core$List$map, viewYear, model.x))
-				]));
-	});
-var $abradley2$elm_datepicker$DatePicker$view = F2(
-	function (model, props) {
-		return A2(
-			$elm$core$Maybe$withDefault,
-			A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('edp-container')
-					]),
-				_List_Nil),
-			A5(
-				$elm$core$Maybe$map4,
-				F4(
-					function (today, indexDate, currentMonthMap, yearList) {
-						var initializedModel = {s: currentMonthMap, D: model.D, f: indexDate, p: model.p, w: model.w, t: model.t, d: model.d, n: model.n, l: today, x: yearList};
-						var footer = props.aN ? A2($elm$html$Html$div, _List_Nil, _List_Nil) : A2($abradley2$elm_datepicker$DatePicker$bottomSection, initializedModel, props);
-						var mainSection = function () {
-							var _v0 = initializedModel.n;
-							if (!_v0) {
-								return A2(
-									$elm$html$Html$div,
-									_List_Nil,
-									_List_fromArray(
-										[
-											A2($abradley2$elm_datepicker$DatePicker$monthChangeSection, initializedModel, props),
-											A2($abradley2$elm_datepicker$DatePicker$weekSection, initializedModel, props),
-											A2($abradley2$elm_datepicker$DatePicker$calendarBody, initializedModel, props),
-											footer
-										]));
-							} else {
-								return A2(
-									$elm$html$Html$div,
-									_List_Nil,
-									_List_fromArray(
-										[
-											A2($abradley2$elm_datepicker$DatePicker$yearSection, initializedModel, props),
-											footer
-										]));
-							}
-						}();
-						var displayDate = A2($elm$core$Maybe$withDefault, today, model.d);
-						return A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('edp-container')
-								]),
-							_List_fromArray(
-								[
-									A3($abradley2$elm_datepicker$DatePicker$headerSection, displayDate, initializedModel, props),
-									mainSection
-								]));
-					}),
-				model.l,
-				model.f,
-				model.s,
-				model.x));
-	});
 var $mdgriffith$elm_ui$Internal$Model$AlignY = function (a) {
 	return {$: 5, a: a};
 };
@@ -6826,7 +6179,7 @@ var $mdgriffith$elm_ui$Internal$Model$Class = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
 	});
-var $mdgriffith$elm_ui$Internal$Style$classes = {cC: 'a', a2: 'atv', cE: 'ab', cF: 'cx', cG: 'cy', cH: 'acb', cI: 'accx', cJ: 'accy', cK: 'acr', bw: 'al', bx: 'ar', cL: 'at', a3: 'ah', a4: 'av', cN: 's', cR: 'bh', cT: 'b', cV: 'w7', cX: 'bd', cY: 'bdt', aB: 'bn', cZ: 'bs', aE: 'cpe', c2: 'cp', c3: 'cpx', c4: 'cpy', Q: 'c', aG: 'ctr', aH: 'cb', aI: 'ccx', R: 'ccy', as: 'cl', aJ: 'cr', c5: 'ct', c7: 'cptr', c8: 'ctxt', df: 'fcs', bK: 'focus-within', dg: 'fs', dh: 'g', ba: 'hbh', bb: 'hc', bO: 'he', bc: 'hf', bP: 'hfp', dk: 'hv', dn: 'ic', dp: 'fr', aO: 'lbl', dr: 'iml', ds: 'imlf', dt: 'imlp', du: 'implw', dv: 'it', dx: 'i', bZ: 'lnk', an: 'nb', b0: 'notxt', dB: 'ol', dD: 'or', ac: 'oq', dH: 'oh', b5: 'pg', b6: 'p', dI: 'ppe', dK: 'ui', ci: 'r', dM: 'sb', dN: 'sbx', dO: 'sby', dP: 'sbt', dR: 'e', dS: 'cap', dT: 'sev', dX: 'sk', B: 't', d_: 'tc', d$: 'w8', d0: 'w2', d1: 'w9', d2: 'tj', aY: 'tja', d3: 'tl', d4: 'w3', d5: 'w5', d6: 'w4', d7: 'tr', d8: 'w6', d9: 'w1', ea: 'tun', cs: 'ts', af: 'clr', ef: 'u', bs: 'wc', cz: 'we', bt: 'wf', cA: 'wfp', bu: 'wrp'};
+var $mdgriffith$elm_ui$Internal$Style$classes = {cC: 'a', aX: 'atv', cE: 'ab', cF: 'cx', cG: 'cy', cH: 'acb', cI: 'accx', cJ: 'accy', cK: 'acr', bw: 'al', bx: 'ar', cL: 'at', aY: 'ah', aZ: 'av', cN: 's', cR: 'bh', cT: 'b', cV: 'w7', cX: 'bd', cY: 'bdt', az: 'bn', cZ: 'bs', aB: 'cpe', c2: 'cp', c3: 'cpx', c4: 'cpy', O: 'c', aD: 'ctr', aE: 'cb', aF: 'ccx', P: 'ccy', ar: 'cl', aG: 'cr', c5: 'ct', c7: 'cptr', c8: 'ctxt', df: 'fcs', bK: 'focus-within', dg: 'fs', dh: 'g', a6: 'hbh', a7: 'hc', bO: 'he', a8: 'hf', bP: 'hfp', dk: 'hv', dn: 'ic', dp: 'fr', aJ: 'lbl', dr: 'iml', ds: 'imlf', dt: 'imlp', du: 'implw', dv: 'it', dx: 'i', bZ: 'lnk', al: 'nb', b0: 'notxt', dB: 'ol', dD: 'or', aa: 'oq', dH: 'oh', b5: 'pg', b6: 'p', dI: 'ppe', dK: 'ui', ci: 'r', dM: 'sb', dN: 'sbx', dO: 'sby', dP: 'sbt', dR: 'e', dS: 'cap', dT: 'sev', dX: 'sk', v: 't', d_: 'tc', d$: 'w8', d0: 'w2', d1: 'w9', d2: 'tj', aR: 'tja', d3: 'tl', d4: 'w3', d5: 'w5', d6: 'w4', d7: 'tr', d8: 'w6', d9: 'w1', ea: 'tun', cs: 'ts', ad: 'clr', ef: 'u', bs: 'wc', cz: 'we', bt: 'wf', cA: 'wfp', bu: 'wrp'};
 var $mdgriffith$elm_ui$Internal$Flag$Flag = function (a) {
 	return {$: 0, a: a};
 };
@@ -6889,7 +6242,7 @@ var $mdgriffith$elm_ui$Internal$Model$asEl = 2;
 var $mdgriffith$elm_ui$Internal$Model$Generic = {$: 0};
 var $mdgriffith$elm_ui$Internal$Model$div = $mdgriffith$elm_ui$Internal$Model$Generic;
 var $mdgriffith$elm_ui$Internal$Model$NoNearbyChildren = {$: 0};
-var $mdgriffith$elm_ui$Internal$Model$columnClass = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.Q);
+var $mdgriffith$elm_ui$Internal$Model$columnClass = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.O);
 var $mdgriffith$elm_ui$Internal$Model$gridClass = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.dh);
 var $mdgriffith$elm_ui$Internal$Model$pageClass = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.b5);
 var $mdgriffith$elm_ui$Internal$Model$paragraphClass = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.b6);
@@ -6991,6 +6344,15 @@ var $mdgriffith$elm_ui$Internal$Flag$alignBottom = $mdgriffith$elm_ui$Internal$F
 var $mdgriffith$elm_ui$Internal$Flag$alignRight = $mdgriffith$elm_ui$Internal$Flag$flag(40);
 var $mdgriffith$elm_ui$Internal$Flag$centerX = $mdgriffith$elm_ui$Internal$Flag$flag(42);
 var $mdgriffith$elm_ui$Internal$Flag$centerY = $mdgriffith$elm_ui$Internal$Flag$flag(43);
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$core$Set$Set_elm_builtin = $elm$core$Basics$identity;
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
@@ -7014,6 +6376,10 @@ var $mdgriffith$elm_ui$Internal$Model$lengthClassName = function (x) {
 			var len = x.b;
 			return 'max' + ($elm$core$String$fromInt(max) + $mdgriffith$elm_ui$Internal$Model$lengthClassName(len));
 	}
+};
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
 };
 var $mdgriffith$elm_ui$Internal$Model$transformClass = function (transform) {
 	switch (transform.$) {
@@ -7095,7 +6461,7 @@ var $mdgriffith$elm_ui$Internal$Model$getStyleName = function (style) {
 				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.dL)) + ('-cols-' + (A2(
 				$elm$core$String$join,
 				'-',
-				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.J)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.b)))))));
+				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.I)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.b)))))));
 		case 9:
 			var pos = style.a;
 			return 'gp grid-pos-' + ($elm$core$String$fromInt(pos.ci) + ('-' + ($elm$core$String$fromInt(pos.bC) + ('-' + ($elm$core$String$fromInt(pos.cy) + ('-' + $elm$core$String$fromInt(pos.bN)))))));
@@ -7553,19 +6919,19 @@ var $mdgriffith$elm_ui$Internal$Style$contentName = function (desc) {
 			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.c5);
 		case 1:
 			var _v2 = desc;
-			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aH);
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aE);
 		case 2:
 			var _v3 = desc;
-			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aJ);
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aG);
 		case 3:
 			var _v4 = desc;
-			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.as);
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ar);
 		case 4:
 			var _v5 = desc;
-			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aI);
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aF);
 		default:
 			var _v6 = desc;
-			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.R);
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.P);
 	}
 };
 var $mdgriffith$elm_ui$Internal$Style$selfName = function (desc) {
@@ -7623,7 +6989,7 @@ var $mdgriffith$elm_ui$Internal$Style$elDescription = _List_fromArray(
 		A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre'),
 		A2(
 		$mdgriffith$elm_ui$Internal$Style$Descriptor,
-		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ba),
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a6),
 		_List_fromArray(
 			[
 				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
@@ -7642,12 +7008,12 @@ var $mdgriffith$elm_ui$Internal$Style$elDescription = _List_fromArray(
 			[
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Child,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.B),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.v),
 				_List_fromArray(
 					[
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Descriptor,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
@@ -7663,14 +7029,14 @@ var $mdgriffith$elm_ui$Internal$Style$elDescription = _List_fromArray(
 			])),
 		A2(
 		$mdgriffith$elm_ui$Internal$Style$Child,
-		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bb),
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a7),
 		_List_fromArray(
 			[
 				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
 			])),
 		A2(
 		$mdgriffith$elm_ui$Internal$Style$Child,
-		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 		_List_fromArray(
 			[
 				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '100000')
@@ -7841,7 +7207,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'block'),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 				_List_fromArray(
 					[
 						A2(
@@ -7888,13 +7254,13 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				_Utils_ap(
 					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN),
-					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc)),
+					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8)),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%')
@@ -7907,7 +7273,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					[
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Descriptor,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.an),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.al),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'fixed'),
@@ -7917,7 +7283,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 			])),
 		A2(
 		$mdgriffith$elm_ui$Internal$Style$Class,
-		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.an),
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.al),
 		_List_fromArray(
 			[
 				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'relative'),
@@ -7949,7 +7315,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
 											A2(
 											$mdgriffith$elm_ui$Internal$Style$Child,
-											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 											_List_fromArray(
 												[
 													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
@@ -7993,7 +7359,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 												])),
 											A2(
 											$mdgriffith$elm_ui$Internal$Style$Child,
-											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 											_List_fromArray(
 												[
 													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
@@ -8152,21 +7518,21 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aE),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aB),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto !important')
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.af),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ad),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ac),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aa),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
@@ -8174,7 +7540,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.dk, $mdgriffith$elm_ui$Internal$Style$classes.af)) + ':hover',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.dk, $mdgriffith$elm_ui$Internal$Style$classes.ad)) + ':hover',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
@@ -8182,7 +7548,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.dk, $mdgriffith$elm_ui$Internal$Style$classes.ac)) + ':hover',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.dk, $mdgriffith$elm_ui$Internal$Style$classes.aa)) + ':hover',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
@@ -8190,7 +7556,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.df, $mdgriffith$elm_ui$Internal$Style$classes.af)) + ':focus',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.df, $mdgriffith$elm_ui$Internal$Style$classes.ad)) + ':focus',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
@@ -8198,7 +7564,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.df, $mdgriffith$elm_ui$Internal$Style$classes.ac)) + ':focus',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.df, $mdgriffith$elm_ui$Internal$Style$classes.aa)) + ':focus',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
@@ -8206,7 +7572,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.a2, $mdgriffith$elm_ui$Internal$Style$classes.af)) + ':active',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.aX, $mdgriffith$elm_ui$Internal$Style$classes.ad)) + ':active',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
@@ -8214,7 +7580,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
 				$mdgriffith$elm_ui$Internal$Style$dot(
-					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.a2, $mdgriffith$elm_ui$Internal$Style$classes.ac)) + ':active',
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.aX, $mdgriffith$elm_ui$Internal$Style$classes.aa)) + ':active',
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
@@ -8268,7 +7634,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-y', 'auto'),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Descriptor,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.Q),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.O),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '1')
@@ -8311,7 +7677,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aB),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.az),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-width', '0')
@@ -8339,7 +7705,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.B),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.v),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre'),
@@ -8388,7 +7754,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'stretch !important')
@@ -8409,7 +7775,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aG),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aD),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0'),
@@ -8545,7 +7911,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Descriptor,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aO),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aJ),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'baseline')
@@ -8553,7 +7919,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.Q),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.O),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
@@ -8575,7 +7941,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bc),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a8),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '100000')
@@ -8731,7 +8097,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 						}),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aG),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aD),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0'),
@@ -8933,7 +8299,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-wrap', 'break-word'),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Descriptor,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ba),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.a6),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
@@ -8947,7 +8313,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$AllChildren,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.B),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.v),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
@@ -9032,7 +8398,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 									])),
 								A2(
 								$mdgriffith$elm_ui$Internal$Style$Child,
-								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.B),
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.v),
 								_List_fromArray(
 									[
 										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
@@ -9048,7 +8414,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 							])),
 						A2(
 						$mdgriffith$elm_ui$Internal$Style$Child,
-						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.Q),
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.O),
 						_List_fromArray(
 							[
 								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline-flex')
@@ -9208,7 +8574,7 @@ var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
 					])),
 				A2(
 				$mdgriffith$elm_ui$Internal$Style$Descriptor,
-				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aY),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aR),
 				_List_fromArray(
 					[
 						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'justify-all')
@@ -9346,14 +8712,14 @@ var $mdgriffith$elm_ui$Internal$Style$inputTextReset = '\ninput[type="search"],\
 var $mdgriffith$elm_ui$Internal$Style$sliderReset = '\ninput[type=range] {\n  -webkit-appearance: none; \n  background: transparent;\n  position:absolute;\n  left:0;\n  top:0;\n  z-index:10;\n  width: 100%;\n  outline: dashed 1px;\n  height: 100%;\n  opacity: 0;\n}\n';
 var $mdgriffith$elm_ui$Internal$Style$thumbReset = '\ninput[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-moz-range-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-ms-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range][orient=vertical]{\n    writing-mode: bt-lr; /* IE */\n    -webkit-appearance: slider-vertical;  /* WebKit */\n}\n';
 var $mdgriffith$elm_ui$Internal$Style$trackReset = '\ninput[type=range]::-moz-range-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-ms-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-webkit-slider-runnable-track {\n    background: transparent;\n    cursor: pointer;\n}\n';
-var $mdgriffith$elm_ui$Internal$Style$overrides = '@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ci) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + (' { flex-basis: auto !important; } ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ci) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aG) + (' { flex-basis: auto !important; }}' + ($mdgriffith$elm_ui$Internal$Style$inputTextReset + ($mdgriffith$elm_ui$Internal$Style$sliderReset + ($mdgriffith$elm_ui$Internal$Style$trackReset + ($mdgriffith$elm_ui$Internal$Style$thumbReset + $mdgriffith$elm_ui$Internal$Style$explainer)))))))))))))));
+var $mdgriffith$elm_ui$Internal$Style$overrides = '@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ci) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + (' { flex-basis: auto !important; } ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.ci) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cN) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.aD) + (' { flex-basis: auto !important; }}' + ($mdgriffith$elm_ui$Internal$Style$inputTextReset + ($mdgriffith$elm_ui$Internal$Style$sliderReset + ($mdgriffith$elm_ui$Internal$Style$trackReset + ($mdgriffith$elm_ui$Internal$Style$thumbReset + $mdgriffith$elm_ui$Internal$Style$explainer)))))))))))))));
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
 };
 var $mdgriffith$elm_ui$Internal$Style$Intermediate = $elm$core$Basics$identity;
 var $mdgriffith$elm_ui$Internal$Style$emptyIntermediate = F2(
 	function (selector, closing) {
-		return {aF: closing, q: _List_Nil, U: _List_Nil, H: selector};
+		return {aC: closing, l: _List_Nil, T: _List_Nil, F: selector};
 	});
 var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 	function (_v0, rulesToRender) {
@@ -9367,10 +8733,10 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								U: A2(
+								T: A2(
 									$elm$core$List$cons,
 									_Utils_Tuple2(name, val),
-									rendered.U)
+									rendered.T)
 							});
 					case 3:
 						var _v2 = rule.a;
@@ -9380,10 +8746,10 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
-									{aF: '\n}', q: _List_Nil, U: props, H: '@supports (' + (prop + (':' + (value + (') {' + parent.H))))},
-									rendered.q)
+									{aC: '\n}', l: _List_Nil, T: props, F: '@supports (' + (prop + (':' + (value + (') {' + parent.F))))},
+									rendered.l)
 							});
 					case 5:
 						var selector = rule.a;
@@ -9391,13 +8757,13 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
 									A2(
 										$mdgriffith$elm_ui$Internal$Style$renderRules,
-										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.H + (' + ' + selector), ''),
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.F + (' + ' + selector), ''),
 										adjRules),
-									rendered.q)
+									rendered.l)
 							});
 					case 1:
 						var child = rule.a;
@@ -9405,13 +8771,13 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
 									A2(
 										$mdgriffith$elm_ui$Internal$Style$renderRules,
-										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.H + (' > ' + child), ''),
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.F + (' > ' + child), ''),
 										childRules),
-									rendered.q)
+									rendered.l)
 							});
 					case 2:
 						var child = rule.a;
@@ -9419,13 +8785,13 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
 									A2(
 										$mdgriffith$elm_ui$Internal$Style$renderRules,
-										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.H + (' ' + child), ''),
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.F + (' ' + child), ''),
 										childRules),
-									rendered.q)
+									rendered.l)
 							});
 					case 4:
 						var descriptor = rule.a;
@@ -9433,29 +8799,29 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
 									A2(
 										$mdgriffith$elm_ui$Internal$Style$renderRules,
 										A2(
 											$mdgriffith$elm_ui$Internal$Style$emptyIntermediate,
-											_Utils_ap(parent.H, descriptor),
+											_Utils_ap(parent.F, descriptor),
 											''),
 										descriptorRules),
-									rendered.q)
+									rendered.l)
 							});
 					default:
 						var batched = rule.a;
 						return _Utils_update(
 							rendered,
 							{
-								q: A2(
+								l: A2(
 									$elm$core$List$cons,
 									A2(
 										$mdgriffith$elm_ui$Internal$Style$renderRules,
-										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.H, ''),
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.F, ''),
 										batched),
-									rendered.q)
+									rendered.l)
 							});
 				}
 			});
@@ -9474,11 +8840,11 @@ var $mdgriffith$elm_ui$Internal$Style$renderCompact = function (styleClasses) {
 				values));
 	};
 	var renderClass = function (rule) {
-		var _v2 = rule.U;
+		var _v2 = rule.T;
 		if (!_v2.b) {
 			return '';
 		} else {
-			return rule.H + ('{' + (renderValues(rule.U) + (rule.aF + '}')));
+			return rule.F + ('{' + (renderValues(rule.T) + (rule.aC + '}')));
 		}
 	};
 	var renderIntermediate = function (_v0) {
@@ -9486,7 +8852,7 @@ var $mdgriffith$elm_ui$Internal$Style$renderCompact = function (styleClasses) {
 		return _Utils_ap(
 			renderClass(rule),
 			$elm$core$String$concat(
-				A2($elm$core$List$map, renderIntermediate, rule.q)));
+				A2($elm$core$List$map, renderIntermediate, rule.l)));
 	};
 	return $elm$core$String$concat(
 		A2(
@@ -9513,6 +8879,7 @@ var $mdgriffith$elm_ui$Internal$Style$rules = _Utils_ap(
 	$mdgriffith$elm_ui$Internal$Style$overrides,
 	$mdgriffith$elm_ui$Internal$Style$renderCompact(
 		_Utils_ap($mdgriffith$elm_ui$Internal$Style$baseSheet, $mdgriffith$elm_ui$Internal$Style$commonValues)));
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $mdgriffith$elm_ui$Internal$Model$staticRoot = function (opts) {
 	var _v0 = opts.dz;
 	switch (_v0) {
@@ -9878,7 +9245,7 @@ var $mdgriffith$elm_ui$Internal$Model$renderStyleRule = F3(
 				var left = '.' + $mdgriffith$elm_ui$Internal$Style$classes.bw;
 				var halfY = $elm$core$String$fromFloat(y / 2) + 'px';
 				var halfX = $elm$core$String$fromFloat(x / 2) + 'px';
-				var column = '.' + $mdgriffith$elm_ui$Internal$Style$classes.Q;
+				var column = '.' + $mdgriffith$elm_ui$Internal$Style$classes.O;
 				var _class = '.' + cls;
 				var any = '.' + $mdgriffith$elm_ui$Internal$Style$classes.cN;
 				return $elm$core$List$concat(
@@ -10153,14 +9520,14 @@ var $mdgriffith$elm_ui$Internal$Model$renderStyleRule = F3(
 					A2(
 						$elm$core$String$join,
 						ySpacing,
-						A2($elm$core$List$map, toGridLength, template.J)));
+						A2($elm$core$List$map, toGridLength, template.I)));
 				var msColumns = function (x) {
 					return '-ms-grid-columns: ' + (x + ';');
 				}(
 					A2(
 						$elm$core$String$join,
 						ySpacing,
-						A2($elm$core$List$map, toGridLength, template.J)));
+						A2($elm$core$List$map, toGridLength, template.I)));
 				var gapY = 'grid-row-gap:' + (toGridLength(template.dU.b) + ';');
 				var gapX = 'grid-column-gap:' + (toGridLength(template.dU.a) + ';');
 				var columns = function (x) {
@@ -10169,14 +9536,14 @@ var $mdgriffith$elm_ui$Internal$Model$renderStyleRule = F3(
 					A2(
 						$elm$core$String$join,
 						' ',
-						A2($elm$core$List$map, toGridLength, template.J)));
+						A2($elm$core$List$map, toGridLength, template.I)));
 				var _class = '.grid-rows-' + (A2(
 					$elm$core$String$join,
 					'-',
 					A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.dL)) + ('-cols-' + (A2(
 					$elm$core$String$join,
 					'-',
-					A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.J)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.b)))))));
+					A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.I)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.dU.b)))))));
 				var modernGrid = _class + ('{' + (columns + (rows + (gapX + (gapY + '}')))));
 				var supports = '@supports (display:grid) {' + (modernGrid + '}');
 				var base = _class + ('{' + (msColumns + (msRows + '}')));
@@ -10273,7 +9640,7 @@ var $mdgriffith$elm_ui$Internal$Model$fontRule = F3(
 		return _List_fromArray(
 			[
 				A2($mdgriffith$elm_ui$Internal$Model$bracket, '.' + (name + ('.' + (modifier + (', ' + ('.' + (name + (' .' + modifier))))))), parentAdj),
-				A2($mdgriffith$elm_ui$Internal$Model$bracket, '.' + (name + ('.' + (modifier + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.B + (', .' + (name + (' .' + (modifier + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.B)))))))))), textAdjustment)
+				A2($mdgriffith$elm_ui$Internal$Model$bracket, '.' + (name + ('.' + (modifier + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.v + (', .' + (name + (' .' + (modifier + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.v)))))))))), textAdjustment)
 			]);
 	});
 var $mdgriffith$elm_ui$Internal$Model$renderFontAdjustmentRule = F3(
@@ -10305,7 +9672,7 @@ var $mdgriffith$elm_ui$Internal$Model$renderNullAdjustmentRule = F2(
 						])),
 					A2(
 					$mdgriffith$elm_ui$Internal$Model$bracket,
-					'.' + (name + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.dS + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.B + (', .' + (name + (' .' + ($mdgriffith$elm_ui$Internal$Style$classes.dS + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.B)))))))))),
+					'.' + (name + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.dS + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.v + (', .' + (name + (' .' + ($mdgriffith$elm_ui$Internal$Style$classes.dS + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.v)))))))))),
 					_List_fromArray(
 						[
 							_Utils_Tuple2('vertical-align', '0'),
@@ -10316,6 +9683,17 @@ var $mdgriffith$elm_ui$Internal$Model$renderNullAdjustmentRule = F2(
 var $mdgriffith$elm_ui$Internal$Model$adjust = F3(
 	function (size, height, vertical) {
 		return {bN: height / size, cn: size, cu: vertical};
+	});
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
 	});
 var $elm$core$List$maximum = function (list) {
 	if (list.b) {
@@ -10496,16 +9874,16 @@ var $mdgriffith$elm_ui$Internal$Model$toStyleSheetString = F2(
 		var combine = F2(
 			function (style, rendered) {
 				return {
-					aU: _Utils_ap(
-						rendered.aU,
+					aN: _Utils_ap(
+						rendered.aN,
 						A3($mdgriffith$elm_ui$Internal$Model$renderStyleRule, options, style, $elm$core$Maybe$Nothing)),
-					ay: function () {
+					aw: function () {
 						var _v1 = $mdgriffith$elm_ui$Internal$Model$topLevelValue(style);
 						if (_v1.$ === 1) {
-							return rendered.ay;
+							return rendered.aw;
 						} else {
 							var topLevel = _v1.a;
-							return A2($elm$core$List$cons, topLevel, rendered.ay);
+							return A2($elm$core$List$cons, topLevel, rendered.aw);
 						}
 					}()
 				};
@@ -10513,10 +9891,10 @@ var $mdgriffith$elm_ui$Internal$Model$toStyleSheetString = F2(
 		var _v0 = A3(
 			$elm$core$List$foldl,
 			combine,
-			{aU: _List_Nil, ay: _List_Nil},
+			{aN: _List_Nil, aw: _List_Nil},
 			stylesheet);
-		var topLevel = _v0.ay;
-		var rules = _v0.aU;
+		var topLevel = _v0.aw;
+		var rules = _v0.aN;
 		return _Utils_ap(
 			$mdgriffith$elm_ui$Internal$Model$renderTopLevelValues(topLevel),
 			$elm$core$String$concat(rules));
@@ -10617,6 +9995,11 @@ var $mdgriffith$elm_ui$Internal$Model$embedWith = F4(
 	});
 var $mdgriffith$elm_ui$Internal$Flag$heightBetween = $mdgriffith$elm_ui$Internal$Flag$flag(45);
 var $mdgriffith$elm_ui$Internal$Flag$heightFill = $mdgriffith$elm_ui$Internal$Flag$flag(37);
+var $elm$virtual_dom$VirtualDom$keyedNode = function (tag) {
+	return _VirtualDom_keyedNode(
+		_VirtualDom_noScript(tag));
+};
+var $elm$core$Basics$not = _Basics_not;
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$core$Bitwise$and = _Bitwise_and;
 var $mdgriffith$elm_ui$Internal$Flag$present = F2(
@@ -10726,7 +10109,7 @@ var $mdgriffith$elm_ui$Internal$Model$finalizeNode = F6(
 								$elm$core$String$join,
 								' ',
 								_List_fromArray(
-									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aG, $mdgriffith$elm_ui$Internal$Style$classes.R, $mdgriffith$elm_ui$Internal$Style$classes.cK])))
+									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aD, $mdgriffith$elm_ui$Internal$Style$classes.P, $mdgriffith$elm_ui$Internal$Style$classes.cK])))
 						]),
 					_List_fromArray(
 						[html])) : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$centerX, has) ? A2(
@@ -10738,7 +10121,7 @@ var $mdgriffith$elm_ui$Internal$Model$finalizeNode = F6(
 								$elm$core$String$join,
 								' ',
 								_List_fromArray(
-									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aG, $mdgriffith$elm_ui$Internal$Style$classes.R, $mdgriffith$elm_ui$Internal$Style$classes.cI])))
+									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aD, $mdgriffith$elm_ui$Internal$Style$classes.P, $mdgriffith$elm_ui$Internal$Style$classes.cI])))
 						]),
 					_List_fromArray(
 						[html])) : html));
@@ -10752,7 +10135,7 @@ var $mdgriffith$elm_ui$Internal$Model$finalizeNode = F6(
 								$elm$core$String$join,
 								' ',
 								_List_fromArray(
-									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aG, $mdgriffith$elm_ui$Internal$Style$classes.cJ])))
+									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aD, $mdgriffith$elm_ui$Internal$Style$classes.cJ])))
 						]),
 					_List_fromArray(
 						[html])) : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$alignBottom, has) ? A2(
@@ -10764,7 +10147,7 @@ var $mdgriffith$elm_ui$Internal$Model$finalizeNode = F6(
 								$elm$core$String$join,
 								' ',
 								_List_fromArray(
-									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aG, $mdgriffith$elm_ui$Internal$Style$classes.cH])))
+									[$mdgriffith$elm_ui$Internal$Style$classes.cN, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.aD, $mdgriffith$elm_ui$Internal$Style$classes.cH])))
 						]),
 					_List_fromArray(
 						[html])) : html));
@@ -10779,7 +10162,8 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
-var $mdgriffith$elm_ui$Internal$Model$textElementClasses = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.B + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.bs + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bb)))));
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $mdgriffith$elm_ui$Internal$Model$textElementClasses = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.v + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.bs + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.a7)))));
 var $mdgriffith$elm_ui$Internal$Model$textElement = function (str) {
 	return A2(
 		$elm$html$Html$div,
@@ -10792,7 +10176,7 @@ var $mdgriffith$elm_ui$Internal$Model$textElement = function (str) {
 				$elm$html$Html$text(str)
 			]));
 };
-var $mdgriffith$elm_ui$Internal$Model$textElementFillClasses = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.B + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.bt + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bc)))));
+var $mdgriffith$elm_ui$Internal$Model$textElementFillClasses = $mdgriffith$elm_ui$Internal$Style$classes.cN + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.v + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.bt + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.a8)))));
 var $mdgriffith$elm_ui$Internal$Model$textElementFill = function (str) {
 	return A2(
 		$elm$html$Html$div,
@@ -10919,11 +10303,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
 					A5(
 						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-						rendered.aa,
-						rendered.ab,
-						rendered.W,
+						rendered.Z,
+						rendered._,
+						rendered.V,
 						$mdgriffith$elm_ui$Internal$Model$Keyed(
-							A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.X)),
+							A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.W)),
 						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
 			} else {
 				var allStyles = newStyles;
@@ -10931,11 +10315,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 					{
 						dl: A4(
 							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-							rendered.aa,
-							rendered.ab,
-							rendered.W,
+							rendered.Z,
+							rendered._,
+							rendered.V,
 							$mdgriffith$elm_ui$Internal$Model$Keyed(
-								A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.X))),
+								A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.W))),
 						dY: allStyles
 					});
 			}
@@ -10953,11 +10337,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
 					A5(
 						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-						rendered.aa,
-						rendered.ab,
-						rendered.W,
+						rendered.Z,
+						rendered._,
+						rendered.V,
 						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.X)),
+							A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.W)),
 						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
 			} else {
 				var allStyles = newStyles;
@@ -10965,11 +10349,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 					{
 						dl: A4(
 							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-							rendered.aa,
-							rendered.ab,
-							rendered.W,
+							rendered.Z,
+							rendered._,
+							rendered.V,
 							$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-								A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.X))),
+								A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.W))),
 						dY: allStyles
 					});
 			}
@@ -11023,37 +10407,37 @@ var $mdgriffith$elm_ui$Internal$Model$nearbyElement = F2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cC]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cC]));
 							case 1:
 								return A2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cT]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cT]));
 							case 2:
 								return A2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dD]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dD]));
 							case 3:
 								return A2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dB]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dB]));
 							case 4:
 								return A2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dp]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.dp]));
 							default:
 								return A2(
 									$elm$core$String$join,
 									' ',
 									_List_fromArray(
-										[$mdgriffith$elm_ui$Internal$Style$classes.an, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cR]));
+										[$mdgriffith$elm_ui$Internal$Style$classes.al, $mdgriffith$elm_ui$Internal$Style$classes.dR, $mdgriffith$elm_ui$Internal$Style$classes.cR]));
 						}
 					}())
 				]),
@@ -11154,21 +10538,21 @@ var $mdgriffith$elm_ui$Internal$Model$addNodeName = F2(
 var $mdgriffith$elm_ui$Internal$Model$alignXName = function (align) {
 	switch (align) {
 		case 0:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a3 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bw);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bw);
 		case 2:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a3 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bx);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bx);
 		default:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a3 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cF);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cF);
 	}
 };
 var $mdgriffith$elm_ui$Internal$Model$alignYName = function (align) {
 	switch (align) {
 		case 0:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a4 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cL);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aZ + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cL);
 		case 2:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a4 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cE);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aZ + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cE);
 		default:
-			return $mdgriffith$elm_ui$Internal$Style$classes.a4 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cG);
+			return $mdgriffith$elm_ui$Internal$Style$classes.aZ + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.cG);
 	}
 };
 var $elm$virtual_dom$VirtualDom$attribute = F2(
@@ -11335,13 +10719,13 @@ var $mdgriffith$elm_ui$Internal$Model$renderHeight = function (h) {
 		case 1:
 			return _Utils_Tuple3(
 				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightContent, $mdgriffith$elm_ui$Internal$Flag$none),
-				$mdgriffith$elm_ui$Internal$Style$classes.bb,
+				$mdgriffith$elm_ui$Internal$Style$classes.a7,
 				_List_Nil);
 		case 2:
 			var portion = h.a;
 			return (portion === 1) ? _Utils_Tuple3(
 				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightFill, $mdgriffith$elm_ui$Internal$Flag$none),
-				$mdgriffith$elm_ui$Internal$Style$classes.bc,
+				$mdgriffith$elm_ui$Internal$Style$classes.a8,
 				_List_Nil) : _Utils_Tuple3(
 				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightFill, $mdgriffith$elm_ui$Internal$Flag$none),
 				$mdgriffith$elm_ui$Internal$Style$classes.bP + (' height-fill-' + $elm$core$String$fromInt(portion)),
@@ -11349,7 +10733,7 @@ var $mdgriffith$elm_ui$Internal$Model$renderHeight = function (h) {
 					[
 						A3(
 						$mdgriffith$elm_ui$Internal$Model$Single,
-						$mdgriffith$elm_ui$Internal$Style$classes.cN + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.Q + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+						$mdgriffith$elm_ui$Internal$Style$classes.cN + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.O + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
 							'height-fill-' + $elm$core$String$fromInt(portion))))),
 						'flex-grow',
 						$elm$core$String$fromInt(portion * 100000))
@@ -11519,25 +10903,25 @@ var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
 				var _v1 = $mdgriffith$elm_ui$Internal$Model$transformClass(transform);
 				if (_v1.$ === 1) {
 					return {
-						W: A2(
+						V: A2(
 							$elm$core$List$cons,
 							$elm$html$Html$Attributes$class(classes),
 							attrs),
-						X: children,
-						aa: has,
-						ab: node,
+						W: children,
+						Z: has,
+						_: node,
 						dY: styles
 					};
 				} else {
 					var _class = _v1.a;
 					return {
-						W: A2(
+						V: A2(
 							$elm$core$List$cons,
 							$elm$html$Html$Attributes$class(classes + (' ' + _class)),
 							attrs),
-						X: children,
-						aa: has,
-						ab: node,
+						W: children,
+						Z: has,
+						_: node,
 						dY: A2(
 							$elm$core$List$cons,
 							$mdgriffith$elm_ui$Internal$Model$Transform(transform),
@@ -11901,7 +11285,7 @@ var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
 									elementAttrs = $temp$elementAttrs;
 									continue gatherAttrRecursive;
 								case 1:
-									var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.bb + (' ' + classes),
+									var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.a7 + (' ' + classes),
 										$temp$node = node,
 										$temp$has = A2(
 										$mdgriffith$elm_ui$Internal$Flag$add,
@@ -11924,7 +11308,7 @@ var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
 								case 2:
 									var portion = height.a;
 									if (portion === 1) {
-										var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.bc + (' ' + classes),
+										var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.a8 + (' ' + classes),
 											$temp$node = node,
 											$temp$has = A2(
 											$mdgriffith$elm_ui$Internal$Flag$add,
@@ -11956,7 +11340,7 @@ var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
 											$elm$core$List$cons,
 											A3(
 												$mdgriffith$elm_ui$Internal$Model$Single,
-												$mdgriffith$elm_ui$Internal$Style$classes.cN + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.Q + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+												$mdgriffith$elm_ui$Internal$Style$classes.cN + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.O + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
 													'height-fill-' + $elm$core$String$fromInt(portion))))),
 												'flex-grow',
 												$elm$core$String$fromInt(portion * 100000)),
@@ -12630,6 +12014,23 @@ var $mdgriffith$elm_ui$Element$mouseOver = function (decs) {
 			1,
 			$mdgriffith$elm_ui$Internal$Model$unwrapDecorations(decs)));
 };
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 0, a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
 var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
 	function (a, b, c, d, e) {
@@ -12642,9 +12043,9 @@ var $mdgriffith$elm_ui$Internal$Model$paddingName = F4(
 	});
 var $mdgriffith$elm_ui$Element$paddingEach = function (_v0) {
 	var top = _v0.bq;
-	var right = _v0.bl;
-	var bottom = _v0.a6;
-	var left = _v0.bd;
+	var right = _v0.bk;
+	var bottom = _v0.a$;
+	var left = _v0.ba;
 	if (_Utils_eq(top, right) && (_Utils_eq(top, bottom) && _Utils_eq(top, left))) {
 		var topFloat = top;
 		return A2(
@@ -12735,7 +12136,7 @@ var $mdgriffith$elm_ui$Element$row = F2(
 			$mdgriffith$elm_ui$Internal$Model$div,
 			A2(
 				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.as + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.R)),
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.ar + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.P)),
 				A2(
 					$elm$core$List$cons,
 					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
@@ -12779,9 +12180,9 @@ var $mdgriffith$elm_ui$Element$spacing = function (x) {
 var $mdgriffith$elm_ui$Element$text = function (content) {
 	return $mdgriffith$elm_ui$Internal$Model$Text(content);
 };
-var $abradley2$elm_datepicker$DatePicker$bottomSectionUI = F2(
+var $abradley2$elm_datepicker$DatePicker$bottomSection = F2(
 	function (model, props) {
-		var disableOk = _Utils_eq(model.d, $elm$core$Maybe$Nothing);
+		var disableOk = _Utils_eq(model.m, $elm$core$Maybe$Nothing);
 		var buttonStyle = function (isOk) {
 			return _Utils_ap(
 				_List_fromArray(
@@ -12820,7 +12221,7 @@ var $abradley2$elm_datepicker$DatePicker$bottomSectionUI = F2(
 					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
 					$mdgriffith$elm_ui$Element$spacing(10),
 					$mdgriffith$elm_ui$Element$paddingEach(
-					{a6: 20, bd: 10, bl: 10, bq: 0}),
+					{a$: 20, ba: 10, bk: 10, bq: 0}),
 					$mdgriffith$elm_ui$Element$Font$bold,
 					$mdgriffith$elm_ui$Element$alignBottom
 				]),
@@ -12832,14 +12233,14 @@ var $abradley2$elm_datepicker$DatePicker$bottomSectionUI = F2(
 						$elm$core$List$cons,
 						$mdgriffith$elm_ui$Element$Events$onClick($abradley2$elm_datepicker$DatePicker$CancelClicked),
 						buttonStyle(false)),
-					$mdgriffith$elm_ui$Element$text(props.aD)),
+					$mdgriffith$elm_ui$Element$text(props.a1)),
 					A2(
 					$mdgriffith$elm_ui$Element$el,
 					A2(
 						$elm$core$List$cons,
 						$mdgriffith$elm_ui$Element$Events$onClick(
 							function () {
-								var _v0 = model.d;
+								var _v0 = model.m;
 								if (!_v0.$) {
 									var date = _v0.a;
 									return $abradley2$elm_datepicker$DatePicker$SubmitClicked(date);
@@ -12848,7 +12249,7 @@ var $abradley2$elm_datepicker$DatePicker$bottomSectionUI = F2(
 								}
 							}()),
 						buttonStyle(true)),
-					$mdgriffith$elm_ui$Element$text(props.aS))
+					$mdgriffith$elm_ui$Element$text(props.bf))
 				]));
 	});
 var $elm$core$Basics$always = F2(
@@ -13026,39 +12427,39 @@ var $andrewMacmurray$elm_simple_animation$Internal$Animation$collectOption = F2(
 				return _Utils_update(
 					opts,
 					{
-						aL: $elm$core$Maybe$Just(ms)
+						aH: $elm$core$Maybe$Just(ms)
 					});
 			case 0:
 				var i = o.a;
 				return _Utils_update(
 					opts,
 					{
-						am: $elm$core$Maybe$Just(i)
+						ak: $elm$core$Maybe$Just(i)
 					});
 			case 2:
 				var e = o.a;
 				return _Utils_update(
 					opts,
 					{
-						aZ: $elm$core$Maybe$Just(e)
+						aS: $elm$core$Maybe$Just(e)
 					});
 			case 3:
 				return _Utils_update(
 					opts,
-					{al: true});
+					{aj: true});
 			default:
 				return _Utils_update(
 					opts,
-					{au: true});
+					{at: true});
 		}
 	});
-var $andrewMacmurray$elm_simple_animation$Internal$Animation$defaults = {aL: $elm$core$Maybe$Nothing, al: false, am: $elm$core$Maybe$Nothing, au: false, aZ: $elm$core$Maybe$Nothing};
+var $andrewMacmurray$elm_simple_animation$Internal$Animation$defaults = {aH: $elm$core$Maybe$Nothing, aj: false, ak: $elm$core$Maybe$Nothing, at: false, aS: $elm$core$Maybe$Nothing};
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Count = function (a) {
 	return {$: 1, a: a};
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Loop = {$: 0};
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$iterationForYoyo = function (opts) {
-	var _v0 = opts.am;
+	var _v0 = opts.ak;
 	if (!_v0.$) {
 		if (!_v0.a.$) {
 			var _v1 = _v0.a;
@@ -13072,10 +12473,10 @@ var $andrewMacmurray$elm_simple_animation$Internal$Animation$iterationForYoyo = 
 	}
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$normalise = function (opts) {
-	return opts.al ? _Utils_update(
+	return opts.aj ? _Utils_update(
 		opts,
 		{
-			am: $elm$core$Maybe$Just(
+			ak: $elm$core$Maybe$Just(
 				$andrewMacmurray$elm_simple_animation$Internal$Animation$iterationForYoyo(opts))
 		}) : opts;
 };
@@ -13119,14 +12520,14 @@ var $andrewMacmurray$elm_simple_animation$Internal$Animation$AlternateReverse_ =
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Alternate_ = 0;
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Reverse_ = 1;
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$toDirection = function (opts) {
-	return (opts.al && opts.au) ? $elm$core$Maybe$Just(2) : (opts.au ? $elm$core$Maybe$Just(1) : (opts.al ? $elm$core$Maybe$Just(0) : $elm$core$Maybe$Nothing));
+	return (opts.aj && opts.at) ? $elm$core$Maybe$Just(2) : (opts.at ? $elm$core$Maybe$Just(1) : (opts.aj ? $elm$core$Maybe$Just(0) : $elm$core$Maybe$Nothing));
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$renderOptions_ = function (opts) {
 	return _List_fromArray(
 		[
-			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-delay', $andrewMacmurray$elm_simple_animation$Internal$Unit$ms, opts.aL),
-			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-timing-function', $andrewMacmurray$elm_simple_animation$Internal$Ease$toString, opts.aZ),
-			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-iteration-count', $andrewMacmurray$elm_simple_animation$Internal$Animation$renderIteration, opts.am),
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-delay', $andrewMacmurray$elm_simple_animation$Internal$Unit$ms, opts.aH),
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-timing-function', $andrewMacmurray$elm_simple_animation$Internal$Ease$toString, opts.aS),
+			A3($andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption, 'animation-iteration-count', $andrewMacmurray$elm_simple_animation$Internal$Animation$renderIteration, opts.ak),
 			A3(
 			$andrewMacmurray$elm_simple_animation$Internal$Animation$renderOption,
 			'animation-direction',
@@ -13219,7 +12620,7 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$combine = F2(
 				return _Utils_update(
 					combined,
 					{
-						aT: $elm$core$Maybe$Just(n)
+						aM: $elm$core$Maybe$Just(n)
 					});
 			case 1:
 				var x_ = transform.a;
@@ -13227,7 +12628,7 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$combine = F2(
 				return _Utils_update(
 					combined,
 					{
-						aV: $elm$core$Maybe$Just(
+						aO: $elm$core$Maybe$Just(
 							_Utils_Tuple2(x_, y_))
 					});
 			default:
@@ -13239,7 +12640,7 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$combine = F2(
 						return _Utils_update(
 							combined,
 							{
-								a0: $elm$core$Maybe$Just(
+								aV: $elm$core$Maybe$Just(
 									_Utils_Tuple2(x_, y_))
 							});
 					case 0:
@@ -13247,19 +12648,19 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$combine = F2(
 						return _Utils_update(
 							combined,
 							{
-								a$: $elm$core$Maybe$Just(n)
+								aU: $elm$core$Maybe$Just(n)
 							});
 					default:
 						var n = transform.a.a;
 						return _Utils_update(
 							combined,
 							{
-								a1: $elm$core$Maybe$Just(n)
+								aW: $elm$core$Maybe$Just(n)
 							});
 				}
 		}
 	});
-var $andrewMacmurray$elm_simple_animation$Internal$Transform$empty = {aT: $elm$core$Maybe$Nothing, aV: $elm$core$Maybe$Nothing, a$: $elm$core$Maybe$Nothing, a0: $elm$core$Maybe$Nothing, a1: $elm$core$Maybe$Nothing};
+var $andrewMacmurray$elm_simple_animation$Internal$Transform$empty = {aM: $elm$core$Maybe$Nothing, aO: $elm$core$Maybe$Nothing, aU: $elm$core$Maybe$Nothing, aV: $elm$core$Maybe$Nothing, aW: $elm$core$Maybe$Nothing};
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$render_ = function (f) {
 	return A2(
 		$elm$core$Basics$composeR,
@@ -13335,11 +12736,11 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$render = function (
 			A2($elm$core$Basics$composeR, $elm$core$String$isEmpty, $elm$core$Basics$not),
 			_List_fromArray(
 				[
-					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translate_, combined.a0),
-					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateX_, combined.a$),
-					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateY_, combined.a1),
-					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$scale_, combined.aV),
-					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$rotate_, combined.aT)
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translate_, combined.aV),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateX_, combined.aU),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$translateY_, combined.aW),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$scale_, combined.aO),
+					A2($andrewMacmurray$elm_simple_animation$Internal$Transform$render_, $andrewMacmurray$elm_simple_animation$Internal$Transform$rotate_, combined.aM)
 				])));
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$toString = A2(
@@ -13423,6 +12824,10 @@ var $abradley2$elm_datepicker$DatePicker$animatedUi = $andrewMacmurray$elm_simpl
 	{cS: $mdgriffith$elm_ui$Element$behindContent, dl: $mdgriffith$elm_ui$Element$html, dm: $mdgriffith$elm_ui$Element$htmlAttribute});
 var $mdgriffith$elm_ui$Internal$Flag$overflow = $mdgriffith$elm_ui$Internal$Flag$flag(20);
 var $mdgriffith$elm_ui$Element$clipX = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$overflow, $mdgriffith$elm_ui$Internal$Style$classes.c3);
+var $abradley2$elm_datepicker$DatePicker$DateSelected = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
 var $mdgriffith$elm_ui$Internal$Model$Top = 0;
 var $mdgriffith$elm_ui$Element$alignTop = $mdgriffith$elm_ui$Internal$Model$AlignY(0);
 var $mdgriffith$elm_ui$Internal$Model$CenterX = 1;
@@ -13439,7 +12844,7 @@ var $mdgriffith$elm_ui$Element$column = F2(
 			$mdgriffith$elm_ui$Internal$Model$div,
 			A2(
 				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.c5 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.as)),
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.c5 + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.ar)),
 				A2(
 					$elm$core$List$cons,
 					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
@@ -13605,7 +13010,11 @@ var $elm$core$List$take = F2(
 	function (n, list) {
 		return A3($elm$core$List$takeFast, 0, n, list);
 	});
-var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
+var $justinmimbs$date$Date$toRataDie = function (_v0) {
+	var rd = _v0;
+	return rd;
+};
+var $abradley2$elm_datepicker$DatePicker$daySectionMonth = F2(
 	function (model, props) {
 		var weekRows = F2(
 			function (acc, days) {
@@ -13647,10 +13056,10 @@ var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
 							var dayNum = _v1.a;
 							var date = _v1.b;
 							var isToday = _Utils_eq(
-								$justinmimbs$date$Date$toRataDie(model.l),
+								$justinmimbs$date$Date$toRataDie(model.w),
 								$justinmimbs$date$Date$toRataDie(date));
 							var isSelected = function () {
-								var _v4 = model.d;
+								var _v4 = model.m;
 								if (!_v4.$) {
 									var selected = _v4.a;
 									return _Utils_eq(
@@ -13661,7 +13070,7 @@ var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
 								}
 							}();
 							var isPlaceholder = !dayNum;
-							var canSelect = (!isPlaceholder) && props.aC(date);
+							var canSelect = (!isPlaceholder) && props.a0(date);
 							return A2(
 								$mdgriffith$elm_ui$Element$el,
 								_Utils_ap(
@@ -13669,7 +13078,7 @@ var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
 										[
 											$mdgriffith$elm_ui$Element$Events$onClick(
 											function () {
-												var _v2 = _Utils_Tuple2(canSelect, model.d);
+												var _v2 = _Utils_Tuple2(canSelect, model.m);
 												if (_v2.a) {
 													if (!_v2.b.$) {
 														var previousSelected = _v2.b.a;
@@ -13678,7 +13087,7 @@ var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
 															$justinmimbs$date$Date$toRataDie(date)) ? $abradley2$elm_datepicker$DatePicker$NoOp : A2($abradley2$elm_datepicker$DatePicker$DateSelected, date, previousSelected);
 													} else {
 														var _v3 = _v2.b;
-														return A2($abradley2$elm_datepicker$DatePicker$DateSelected, date, model.l);
+														return A2($abradley2$elm_datepicker$DatePicker$DateSelected, date, model.w);
 													}
 												} else {
 													return $abradley2$elm_datepicker$DatePicker$NoOp;
@@ -13722,7 +13131,7 @@ var $abradley2$elm_datepicker$DatePicker$daySectionMonthUI = F2(
 									$mdgriffith$elm_ui$Element$text(
 										isPlaceholder ? ' ' : $elm$core$String$fromInt(dayNum))));
 						},
-						model.s))));
+						model.A))));
 	});
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Ease = function (a) {
 	return {$: 2, a: a};
@@ -13852,24 +13261,30 @@ var $andrewMacmurray$elm_simple_animation$Simple$Animation$toAnimation = functio
 	var s = _v0;
 	return A3(
 		$andrewMacmurray$elm_simple_animation$Internal$Animation$Animation,
-		$andrewMacmurray$elm_simple_animation$Simple$Animation$totalDuration(s.aX),
+		$andrewMacmurray$elm_simple_animation$Simple$Animation$totalDuration(s.aQ),
 		s.b3,
-		A2($andrewMacmurray$elm_simple_animation$Simple$Animation$toFrames, s.aW, s.aX));
+		A2($andrewMacmurray$elm_simple_animation$Simple$Animation$toFrames, s.aP, s.aQ));
 };
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$fromTo = F3(
 	function (o, from_, to_) {
 		return $andrewMacmurray$elm_simple_animation$Simple$Animation$toAnimation(
 			{
 				b3: o.b3,
-				aW: from_,
-				aX: _List_fromArray(
+				aP: from_,
+				aQ: _List_fromArray(
 					[
 						A2($andrewMacmurray$elm_simple_animation$Simple$Animation$step, o.bF, to_)
 					])
 			});
 	});
+var $abradley2$elm_datepicker$DatePicker$getMonthKey = function (date) {
+	return A2(
+		$abradley2$elm_datepicker$DatePicker$Util$getMonthInfo,
+		$justinmimbs$date$Date$month(date),
+		$abradley2$elm_datepicker$DatePicker$Util$monthDisplay).a;
+};
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
-var $abradley2$elm_datepicker$DatePicker$previousMonthBodyUI = F2(
+var $abradley2$elm_datepicker$DatePicker$previousMonthBody = F2(
 	function (model, props) {
 		return A2(
 			$elm$core$Maybe$map,
@@ -13881,13 +13296,13 @@ var $abradley2$elm_datepicker$DatePicker$previousMonthBodyUI = F2(
 							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
 						]),
 					A2(
-						$abradley2$elm_datepicker$DatePicker$daySectionMonthUI,
+						$abradley2$elm_datepicker$DatePicker$daySectionMonth,
 						_Utils_update(
 							model,
-							{s: previousMonthMap}),
+							{A: previousMonthMap}),
 						props));
 			},
-			model.w);
+			model.E);
 	});
 var $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform = function (a) {
 	return {$: 1, a: a};
@@ -13900,9 +13315,9 @@ var $andrewMacmurray$elm_simple_animation$Internal$Transform$X = function (a) {
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$x = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$X);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$x = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$x);
-var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
+var $abradley2$elm_datepicker$DatePicker$calendarBody = F2(
 	function (model, props) {
-		var _v0 = (model.p === 2) ? _Utils_Tuple3(
+		var _v0 = (model.B === 2) ? _Utils_Tuple3(
 			0,
 			-280,
 			_List_fromArray(
@@ -13910,18 +13325,18 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 					A2(
 					$elm$core$Maybe$withDefault,
 					$mdgriffith$elm_ui$Element$none,
-					A2($abradley2$elm_datepicker$DatePicker$previousMonthBodyUI, model, props)),
-					A2($abradley2$elm_datepicker$DatePicker$daySectionMonthUI, model, props)
+					A2($abradley2$elm_datepicker$DatePicker$previousMonthBody, model, props)),
+					A2($abradley2$elm_datepicker$DatePicker$daySectionMonth, model, props)
 				])) : _Utils_Tuple3(
 			-280,
 			0,
 			_List_fromArray(
 				[
-					A2($abradley2$elm_datepicker$DatePicker$daySectionMonthUI, model, props),
+					A2($abradley2$elm_datepicker$DatePicker$daySectionMonth, model, props),
 					A2(
 					$elm$core$Maybe$withDefault,
 					$mdgriffith$elm_ui$Element$none,
-					A2($abradley2$elm_datepicker$DatePicker$previousMonthBodyUI, model, props))
+					A2($abradley2$elm_datepicker$DatePicker$previousMonthBody, model, props))
 				]));
 		var origin = _v0.a;
 		var destination = _v0.b;
@@ -13942,7 +13357,7 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 						A2(
 							$elm$core$Maybe$map,
 							$elm$core$Basics$always(origin),
-							model.w)))
+							model.E)))
 				]),
 			_List_fromArray(
 				[
@@ -13953,7 +13368,7 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 						A2(
 							$elm$core$Maybe$map,
 							$elm$core$Basics$always(destination),
-							model.w)))
+							model.E)))
 				]));
 		return A2(
 			$mdgriffith$elm_ui$Element$Keyed$el,
@@ -13965,7 +13380,7 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 					$mdgriffith$elm_ui$Element$px(244))
 				]),
 			_Utils_Tuple2(
-				$abradley2$elm_datepicker$DatePicker$getMonthKey(model.f),
+				$abradley2$elm_datepicker$DatePicker$getMonthKey(model.n),
 				A4(
 					$abradley2$elm_datepicker$DatePicker$animatedUi,
 					$mdgriffith$elm_ui$Element$row,
@@ -13979,6 +13394,9 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 					body)));
 	});
 var $mdgriffith$elm_ui$Element$clipY = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$overflow, $mdgriffith$elm_ui$Internal$Style$classes.c4);
+var $abradley2$elm_datepicker$DatePicker$SetSelectionMode = function (a) {
+	return {$: 7, a: a};
+};
 var $abradley2$elm_datepicker$DatePicker$noAttr = $mdgriffith$elm_ui$Element$htmlAttribute(
 	$elm$html$Html$Attributes$class(''));
 var $mdgriffith$elm_ui$Internal$Model$boxShadowClass = function (shadow) {
@@ -14005,7 +13423,7 @@ var $mdgriffith$elm_ui$Element$Border$shadow = function (almostShade) {
 			'box-shadow',
 			$mdgriffith$elm_ui$Internal$Model$formatBoxShadow(shade)));
 };
-var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI = F4(
+var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay = F4(
 	function (isPreviousDate, date, model, props) {
 		return A2(
 			$elm$core$Maybe$map,
@@ -14021,7 +13439,7 @@ var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI = F4(
 								$mdgriffith$elm_ui$Element$pointer,
 								isPreviousDate ? A2($mdgriffith$elm_ui$Element$paddingXY, 10, 3) : A2($mdgriffith$elm_ui$Element$paddingXY, 10, 4)
 							]),
-						(!(!model.n)) ? _List_fromArray(
+						(!(!model.u)) ? _List_fromArray(
 							[
 								(!isPreviousDate) ? $mdgriffith$elm_ui$Element$Border$shadow(
 								{
@@ -14038,16 +13456,17 @@ var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI = F4(
 						_List_fromArray(
 							[$mdgriffith$elm_ui$Element$centerY]),
 						$mdgriffith$elm_ui$Element$text(
-							A2(props.av, date, model.f))));
+							A2(props.bm, date, model.n))));
 			},
 			date);
 	});
-var $abradley2$elm_datepicker$DatePicker$displayYearUI = A2(
+var $abradley2$elm_datepicker$DatePicker$YearPicker = 1;
+var $abradley2$elm_datepicker$DatePicker$displayYear = A2(
 	$elm$core$Basics$composeR,
 	$justinmimbs$date$Date$year,
 	A2($elm$core$Basics$composeR, $elm$core$String$fromInt, $mdgriffith$elm_ui$Element$text));
 var $mdgriffith$elm_ui$Element$Font$regular = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontWeight, $mdgriffith$elm_ui$Internal$Style$classes.d6);
-var $abradley2$elm_datepicker$DatePicker$headerYearDisplayUI = F3(
+var $abradley2$elm_datepicker$DatePicker$headerYearDisplay = F3(
 	function (displayDate, model, props) {
 		return A2(
 			$mdgriffith$elm_ui$Element$el,
@@ -14061,7 +13480,7 @@ var $abradley2$elm_datepicker$DatePicker$headerYearDisplayUI = F3(
 						$mdgriffith$elm_ui$Element$pointer,
 						$mdgriffith$elm_ui$Element$Font$semiBold
 					]),
-				(model.n !== 1) ? _List_fromArray(
+				(model.u !== 1) ? _List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$Border$shadow(
 						{
@@ -14074,14 +13493,21 @@ var $abradley2$elm_datepicker$DatePicker$headerYearDisplayUI = F3(
 						A4($mdgriffith$elm_ui$Element$rgba, 1, 1, 1, 0.8)),
 						$mdgriffith$elm_ui$Element$Font$regular
 					]) : _List_Nil),
-			$abradley2$elm_datepicker$DatePicker$displayYearUI(displayDate));
+			$abradley2$elm_datepicker$DatePicker$displayYear(displayDate));
 	});
+var $abradley2$elm_datepicker$DatePicker$Util$isJust = A2(
+	$elm$core$Basics$composeR,
+	$elm$core$Maybe$map(
+		function (_v0) {
+			return true;
+		}),
+	$elm$core$Maybe$withDefault(false));
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$Y = function (a) {
 	return {$: 1, a: a};
 };
 var $andrewMacmurray$elm_simple_animation$Internal$Transform$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Transform$Translate, $andrewMacmurray$elm_simple_animation$Internal$Transform$Y);
 var $andrewMacmurray$elm_simple_animation$Simple$Animation$Property$y = A2($elm$core$Basics$composeL, $andrewMacmurray$elm_simple_animation$Internal$Animation$Property$Transform, $andrewMacmurray$elm_simple_animation$Internal$Transform$y);
-var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
+var $abradley2$elm_datepicker$DatePicker$headerSection = F3(
 	function (displayDate, model, props) {
 		var animation = A3(
 			$andrewMacmurray$elm_simple_animation$Simple$Animation$fromTo,
@@ -14099,7 +13525,7 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 						A2(
 							$elm$core$Maybe$map,
 							$elm$core$Basics$always(0),
-							model.t)))
+							model.y)))
 				]),
 			_List_fromArray(
 				[
@@ -14110,7 +13536,7 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 						A2(
 							$elm$core$Maybe$map,
 							$elm$core$Basics$always(-40),
-							model.t)))
+							model.y)))
 				]));
 		return A2(
 			$mdgriffith$elm_ui$Element$column,
@@ -14128,7 +13554,7 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 				]),
 			_List_fromArray(
 				[
-					A3($abradley2$elm_datepicker$DatePicker$headerYearDisplayUI, displayDate, model, props),
+					A3($abradley2$elm_datepicker$DatePicker$headerYearDisplay, displayDate, model, props),
 					A2(
 					$mdgriffith$elm_ui$Element$Keyed$el,
 					_List_fromArray(
@@ -14145,7 +13571,7 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 							A2(
 								$elm$core$Maybe$map,
 								$elm$core$String$fromInt,
-								A2($elm$core$Maybe$map, $justinmimbs$date$Date$toRataDie, model.t))),
+								A2($elm$core$Maybe$map, $justinmimbs$date$Date$toRataDie, model.y))),
 						A4(
 							$abradley2$elm_datepicker$DatePicker$animatedUi,
 							$mdgriffith$elm_ui$Element$column,
@@ -14156,14 +13582,14 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 									A2(
 									$elm$core$Maybe$withDefault,
 									$mdgriffith$elm_ui$Element$none,
-									A4($abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI, true, model.t, model, props)),
+									A4($abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay, true, model.y, model, props)),
 									A2(
 									$elm$core$Maybe$withDefault,
 									$mdgriffith$elm_ui$Element$none,
 									A4(
-										$abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI,
+										$abradley2$elm_datepicker$DatePicker$headerDayMonthDisplay,
 										false,
-										$abradley2$elm_datepicker$DatePicker$Util$isJust(model.d) ? model.d : $elm$core$Maybe$Just(model.l),
+										$abradley2$elm_datepicker$DatePicker$Util$isJust(model.m) ? model.m : $elm$core$Maybe$Just(model.w),
 										model,
 										props))
 								]))))
@@ -14376,6 +13802,37 @@ var $mdgriffith$elm_ui$Element$layoutWith = F3(
 	});
 var $mdgriffith$elm_ui$Element$layout = $mdgriffith$elm_ui$Element$layoutWith(
 	{b3: _List_Nil});
+var $elm$core$Maybe$map4 = F5(
+	function (func, ma, mb, mc, md) {
+		if (ma.$ === 1) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var a = ma.a;
+			if (mb.$ === 1) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var b = mb.a;
+				if (mc.$ === 1) {
+					return $elm$core$Maybe$Nothing;
+				} else {
+					var c = mc.a;
+					if (md.$ === 1) {
+						return $elm$core$Maybe$Nothing;
+					} else {
+						var d = md.a;
+						return $elm$core$Maybe$Just(
+							A4(func, a, b, c, d));
+					}
+				}
+			}
+		}
+	});
+var $abradley2$elm_datepicker$DatePicker$NextMonth = function (a) {
+	return {$: 4, a: a};
+};
+var $abradley2$elm_datepicker$DatePicker$PreviousMonth = function (a) {
+	return {$: 3, a: a};
+};
 var $mdgriffith$elm_ui$Internal$Model$Left = 0;
 var $mdgriffith$elm_ui$Element$alignLeft = $mdgriffith$elm_ui$Internal$Model$AlignX(0);
 var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
@@ -14434,10 +13891,10 @@ var $mdgriffith$elm_ui$Element$Border$widthXY = F2(
 				x));
 	});
 var $mdgriffith$elm_ui$Element$Border$widthEach = function (_v0) {
-	var bottom = _v0.a6;
+	var bottom = _v0.a$;
 	var top = _v0.bq;
-	var left = _v0.bd;
-	var right = _v0.bl;
+	var left = _v0.ba;
+	var right = _v0.bk;
 	return (_Utils_eq(top, bottom) && _Utils_eq(left, right)) ? (_Utils_eq(top, right) ? $mdgriffith$elm_ui$Element$Border$width(top) : A2($mdgriffith$elm_ui$Element$Border$widthXY, left, top)) : A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,
 		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
@@ -14449,20 +13906,20 @@ var $mdgriffith$elm_ui$Element$Border$widthEach = function (_v0) {
 			bottom,
 			left));
 };
-var $abradley2$elm_datepicker$DatePicker$monthChangeSectionUI = F2(
+var $abradley2$elm_datepicker$DatePicker$monthChangeSection = F2(
 	function (model, props) {
-		var year = $justinmimbs$date$Date$year(model.f);
-		var previousMonthIndexDate = A3($justinmimbs$date$Date$add, 1, -1, model.f);
-		var nextMonthIndexDate = A3($justinmimbs$date$Date$add, 1, 1, model.f);
+		var year = $justinmimbs$date$Date$year(model.n);
+		var previousMonthIndexDate = A3($justinmimbs$date$Date$add, 1, -1, model.n);
+		var nextMonthIndexDate = A3($justinmimbs$date$Date$add, 1, 1, model.n);
 		var canSelectPrevious = A2(
-			props.aj,
+			props.aA,
 			year,
-			$justinmimbs$date$Date$month(previousMonthIndexDate)) && props.P(
+			$justinmimbs$date$Date$month(previousMonthIndexDate)) && props.aq(
 			$justinmimbs$date$Date$year(previousMonthIndexDate));
 		var canSelectNext = A2(
-			props.aj,
+			props.aA,
 			year,
-			$justinmimbs$date$Date$month(nextMonthIndexDate)) && props.P(
+			$justinmimbs$date$Date$month(nextMonthIndexDate)) && props.aq(
 			$justinmimbs$date$Date$year(nextMonthIndexDate));
 		return A2(
 			$mdgriffith$elm_ui$Element$row,
@@ -14486,7 +13943,7 @@ var $abradley2$elm_datepicker$DatePicker$monthChangeSectionUI = F2(
 							$mdgriffith$elm_ui$Element$Border$color(
 							A4($mdgriffith$elm_ui$Element$rgba, 0, 0, 0, 0.54)),
 							$mdgriffith$elm_ui$Element$Border$widthEach(
-							{a6: 2, bd: 2, bl: 0, bq: 0}),
+							{a$: 2, ba: 2, bk: 0, bq: 0}),
 							$mdgriffith$elm_ui$Element$rotate($elm$core$Basics$pi / 4),
 							$mdgriffith$elm_ui$Element$width(
 							$mdgriffith$elm_ui$Element$px(14)),
@@ -14503,12 +13960,12 @@ var $abradley2$elm_datepicker$DatePicker$monthChangeSectionUI = F2(
 						function () {
 							var _v0 = A2(
 								$abradley2$elm_datepicker$DatePicker$Util$getMonthInfo,
-								$justinmimbs$date$Date$month(model.f),
-								props.aQ);
+								$justinmimbs$date$Date$month(model.n),
+								props.bd);
 							var monthFull = _v0.a;
 							var monthInt = _v0.b;
 							return monthFull + (' ' + $elm$core$String$fromInt(
-								$justinmimbs$date$Date$year(model.f)));
+								$justinmimbs$date$Date$year(model.n)));
 						}())),
 					A2(
 					$mdgriffith$elm_ui$Element$el,
@@ -14520,7 +13977,7 @@ var $abradley2$elm_datepicker$DatePicker$monthChangeSectionUI = F2(
 							$mdgriffith$elm_ui$Element$Border$color(
 							A4($mdgriffith$elm_ui$Element$rgba, 0, 0, 0, 0.54)),
 							$mdgriffith$elm_ui$Element$Border$widthEach(
-							{a6: 2, bd: 2, bl: 0, bq: 0}),
+							{a$: 2, ba: 2, bk: 0, bq: 0}),
 							$mdgriffith$elm_ui$Element$rotate((5 * $elm$core$Basics$pi) / 4),
 							$mdgriffith$elm_ui$Element$width(
 							$mdgriffith$elm_ui$Element$px(14)),
@@ -14532,7 +13989,7 @@ var $abradley2$elm_datepicker$DatePicker$monthChangeSectionUI = F2(
 				]));
 	});
 var $mdgriffith$elm_ui$Element$Font$typeface = $mdgriffith$elm_ui$Internal$Model$Typeface;
-var $abradley2$elm_datepicker$DatePicker$weekSectionUI = F2(
+var $abradley2$elm_datepicker$DatePicker$weekSection = F2(
 	function (model, props) {
 		return A2(
 			$mdgriffith$elm_ui$Element$row,
@@ -14561,16 +14018,17 @@ var $abradley2$elm_datepicker$DatePicker$weekSectionUI = F2(
 				},
 				A2(
 					$elm$core$List$map,
-					props.aK,
+					props.a3,
 					_List_fromArray(
 						[6, 0, 1, 2, 3, 4, 5]))));
 	});
 var $mdgriffith$elm_ui$Internal$Flag$fontAlignment = $mdgriffith$elm_ui$Internal$Flag$flag(12);
 var $mdgriffith$elm_ui$Element$Font$center = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontAlignment, $mdgriffith$elm_ui$Internal$Style$classes.d_);
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $mdgriffith$elm_ui$Element$scrollbarY = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$overflow, $mdgriffith$elm_ui$Internal$Style$classes.dO);
-var $abradley2$elm_datepicker$DatePicker$yearSectionUI = F2(
+var $abradley2$elm_datepicker$DatePicker$yearSection = F2(
 	function (model, props) {
-		var workingDate = A2($elm$core$Maybe$withDefault, model.l, model.d);
+		var workingDate = A2($elm$core$Maybe$withDefault, model.w, model.m);
 		var applyYear = F2(
 			function (dt, year) {
 				return A3(
@@ -14580,7 +14038,7 @@ var $abradley2$elm_datepicker$DatePicker$yearSectionUI = F2(
 					$justinmimbs$date$Date$day(dt));
 			});
 		var viewYear = function (year) {
-			var canSelect = props.P(year);
+			var canSelect = props.aq(year);
 			return A2(
 				$mdgriffith$elm_ui$Element$el,
 				_List_fromArray(
@@ -14624,11 +14082,11 @@ var $abradley2$elm_datepicker$DatePicker$yearSectionUI = F2(
 					$mdgriffith$elm_ui$Element$px(320)),
 					$mdgriffith$elm_ui$Element$scrollbarY,
 					$mdgriffith$elm_ui$Element$htmlAttribute(
-					$elm$html$Html$Attributes$id('edp-year-picker-' + model.D))
+					$elm$html$Html$Attributes$id('edp-year-picker-' + model.Q))
 				]),
-			A2($elm$core$List$map, viewYear, model.x));
+			A2($elm$core$List$map, viewYear, model.H));
 	});
-var $abradley2$elm_datepicker$DatePicker$viewUI = F2(
+var $abradley2$elm_datepicker$DatePicker$view = F2(
 	function (model, props) {
 		return A2(
 			$mdgriffith$elm_ui$Element$layout,
@@ -14640,10 +14098,10 @@ var $abradley2$elm_datepicker$DatePicker$viewUI = F2(
 					$elm$core$Maybe$map4,
 					F4(
 						function (today, indexDate, currentMonthMap, yearList) {
-							var initializedModel = {s: currentMonthMap, D: model.D, f: indexDate, p: model.p, w: model.w, t: model.t, d: model.d, n: model.n, l: today, x: yearList};
-							var footer = props.aN ? $mdgriffith$elm_ui$Element$none : A2($abradley2$elm_datepicker$DatePicker$bottomSectionUI, initializedModel, props);
+							var initializedModel = {A: currentMonthMap, Q: model.Q, n: indexDate, B: model.B, E: model.E, y: model.y, m: model.m, u: model.u, w: today, H: yearList};
+							var footer = props.a9 ? $mdgriffith$elm_ui$Element$none : A2($abradley2$elm_datepicker$DatePicker$bottomSection, initializedModel, props);
 							var mainSection = function () {
-								var _v0 = initializedModel.n;
+								var _v0 = initializedModel.u;
 								if (!_v0) {
 									return A2(
 										$mdgriffith$elm_ui$Element$column,
@@ -14654,9 +14112,9 @@ var $abradley2$elm_datepicker$DatePicker$viewUI = F2(
 											]),
 										_List_fromArray(
 											[
-												A2($abradley2$elm_datepicker$DatePicker$monthChangeSectionUI, initializedModel, props),
-												A2($abradley2$elm_datepicker$DatePicker$weekSectionUI, initializedModel, props),
-												A2($abradley2$elm_datepicker$DatePicker$calendarBodyUI, initializedModel, props),
+												A2($abradley2$elm_datepicker$DatePicker$monthChangeSection, initializedModel, props),
+												A2($abradley2$elm_datepicker$DatePicker$weekSection, initializedModel, props),
+												A2($abradley2$elm_datepicker$DatePicker$calendarBody, initializedModel, props),
 												footer
 											]));
 								} else {
@@ -14669,12 +14127,12 @@ var $abradley2$elm_datepicker$DatePicker$viewUI = F2(
 											]),
 										_List_fromArray(
 											[
-												A2($abradley2$elm_datepicker$DatePicker$yearSectionUI, initializedModel, props),
+												A2($abradley2$elm_datepicker$DatePicker$yearSection, initializedModel, props),
 												footer
 											]));
 								}
 							}();
-							var displayDate = A2($elm$core$Maybe$withDefault, today, model.d);
+							var displayDate = A2($elm$core$Maybe$withDefault, today, model.m);
 							return A2(
 								$mdgriffith$elm_ui$Element$column,
 								_List_fromArray(
@@ -14691,14 +14149,14 @@ var $abradley2$elm_datepicker$DatePicker$viewUI = F2(
 									]),
 								_List_fromArray(
 									[
-										A3($abradley2$elm_datepicker$DatePicker$headerSectionUI, displayDate, initializedModel, props),
+										A3($abradley2$elm_datepicker$DatePicker$headerSection, displayDate, initializedModel, props),
 										mainSection
 									]));
 						}),
-					model.l,
-					model.f,
-					model.s,
-					model.x)));
+					model.w,
+					model.n,
+					model.A,
+					model.H)));
 	});
 var $abradley2$elm_datepicker$Demo$view = function (model) {
 	return A2(
@@ -14727,28 +14185,7 @@ var $abradley2$elm_datepicker$Demo$view = function (model) {
 								A2(
 								$elm$html$Html$map,
 								$abradley2$elm_datepicker$Demo$DatePickerMsg,
-								A2($abradley2$elm_datepicker$DatePicker$view, model.Z, $abradley2$elm_datepicker$Demo$getDatePickerProps))
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								A2($elm$html$Html$Attributes$style, 'width', '10px')
-							]),
-						_List_Nil),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								A2($elm$html$Html$Attributes$style, 'margin-top', '40px'),
-								A2($elm$html$Html$Attributes$style, 'box-shadow', '0 1px 3px rgba(0, 0, 0, 0.24)')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$map,
-								$abradley2$elm_datepicker$Demo$DatePickerMsg,
-								A2($abradley2$elm_datepicker$DatePicker$viewUI, model.Z, $abradley2$elm_datepicker$Demo$getDatePickerProps))
+								A2($abradley2$elm_datepicker$DatePicker$view, model.ah, $abradley2$elm_datepicker$Demo$getDatePickerProps))
 							]))
 					]))
 			]));

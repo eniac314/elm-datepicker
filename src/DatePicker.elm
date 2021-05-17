@@ -3,7 +3,6 @@ module DatePicker exposing
     , view, Props, defaultProps
     , setIndexDate
     , SelectionMode
-    , viewUI
     )
 
 {-| This module provides a styled date picker for Elm.
@@ -479,27 +478,11 @@ animatedUi =
 
 
 displayYear =
-    Date.year >> String.fromInt >> Html.text
-
-
-displayYearUI =
     Date.year >> String.fromInt >> text
 
 
-headerYearDisplay : Date -> InitializedModel -> Props -> Html.Html Msg
+headerYearDisplay : Date -> InitializedModel -> Props -> Element Msg
 headerYearDisplay displayDate model props =
-    Html.div
-        [ HtmlAttr.classList
-            [ ( "edp-header-year", True )
-            , ( "edp-header-active", model.selectionMode == YearPicker )
-            ]
-        , HtmlEvents.onClick (SetSelectionMode YearPicker)
-        ]
-        [ displayYear displayDate ]
-
-
-headerYearDisplayUI : Date -> InitializedModel -> Props -> Element Msg
-headerYearDisplayUI displayDate model props =
     el
         ([ Events.onClick (SetSelectionMode YearPicker)
          , paddingXY 10 12
@@ -522,31 +505,11 @@ headerYearDisplayUI displayDate model props =
                     []
                )
         )
-        (displayYearUI displayDate)
+        (displayYear displayDate)
 
 
-headerDayMonthDisplay : Bool -> Maybe Date -> InitializedModel -> Props -> Maybe ( String, Html.Html Msg )
+headerDayMonthDisplay : Bool -> Maybe Date -> InitializedModel -> Props -> Maybe (Element Msg)
 headerDayMonthDisplay isPreviousDate date model props =
-    Maybe.map
-        (\justDate ->
-            ( props.selectedDateDisplay date model.indexDate
-            , Html.div
-                [ HtmlAttr.classList
-                    [ ( "edp-header-month-day", True )
-                    , ( "edp-header-active", model.selectionMode == Calendar )
-                    , ( "edp-month-day-previous", isPreviousDate )
-                    ]
-                , HtmlEvents.onClick <| SetSelectionMode Calendar
-                ]
-                [ Html.text (props.selectedDateDisplay date model.indexDate)
-                ]
-            )
-        )
-        date
-
-
-headerDayMonthDisplayUI : Bool -> Maybe Date -> InitializedModel -> Props -> Maybe (Element Msg)
-headerDayMonthDisplayUI isPreviousDate date model props =
     Maybe.map
         (\justDate ->
             el
@@ -582,40 +545,8 @@ headerDayMonthDisplayUI isPreviousDate date model props =
         date
 
 
-headerSection : Date -> InitializedModel -> Props -> Html.Html Msg
+headerSection : Date -> InitializedModel -> Props -> Element Msg
 headerSection displayDate model props =
-    Html.div
-        [ HtmlAttr.class "edp-header-section"
-        ]
-        [ headerYearDisplay displayDate model props
-        , Html.Keyed.node "div"
-            [ HtmlAttr.class "edp-month-day-wrapper"
-            ]
-            [ Maybe.withDefault
-                ( "previous", Html.div [] [] )
-                (headerDayMonthDisplay True
-                    model.previousSelectedDate
-                    model
-                    props
-                )
-            , Maybe.withDefault
-                ( "current", Html.div [] [] )
-                (headerDayMonthDisplay False
-                    (if isJust model.selectedDate then
-                        model.selectedDate
-
-                     else
-                        Just model.today
-                    )
-                    model
-                    props
-                )
-            ]
-        ]
-
-
-headerSectionUI : Date -> InitializedModel -> Props -> Element Msg
-headerSectionUI displayDate model props =
     let
         animation =
             Animation.fromTo
@@ -641,7 +572,7 @@ headerSectionUI displayDate model props =
         , paddingXY 20 8
         , spacing 4
         ]
-        [ headerYearDisplayUI displayDate model props
+        [ headerYearDisplay displayDate model props
         , Keyed.el
             [ height (px 55)
             , width fill
@@ -656,12 +587,12 @@ headerSectionUI displayDate model props =
                 []
                 [ Maybe.withDefault
                     Element.none
-                    (headerDayMonthDisplayUI True
+                    (headerDayMonthDisplay True
                         model.previousSelectedDate
                         model
                         props
                     )
-                , headerDayMonthDisplayUI False
+                , headerDayMonthDisplay False
                     (if isJust model.selectedDate then
                         model.selectedDate
 
@@ -676,83 +607,8 @@ headerSectionUI displayDate model props =
         ]
 
 
-monthChangeSection : InitializedModel -> Props -> Html.Html Msg
+monthChangeSection : InitializedModel -> Props -> Element Msg
 monthChangeSection model props =
-    let
-        year =
-            Date.year model.indexDate
-
-        previousMonthIndexDate =
-            add Months -1 model.indexDate
-
-        nextMonthIndexDate =
-            add Months 1 model.indexDate
-
-        canSelectNext =
-            props.canSelectMonth year (Date.month nextMonthIndexDate)
-                && props.canSelectYear (Date.year nextMonthIndexDate)
-
-        canSelectPrevious =
-            props.canSelectMonth year (Date.month previousMonthIndexDate)
-                && props.canSelectYear (Date.year previousMonthIndexDate)
-    in
-    Html.div
-        [ HtmlAttr.class "edp-month-change-section edp-body-section"
-        ]
-        [ Html.div
-            [ HtmlAttr.classList
-                [ ( "edp-caret-button", True )
-                , ( "edp-disabled", canSelectPrevious == False )
-                ]
-            , HtmlEvents.onClick <|
-                if canSelectPrevious then
-                    PreviousMonth previousMonthIndexDate
-
-                else
-                    NoOp
-            ]
-            [ Html.div
-                [ HtmlAttr.classList
-                    [ ( "edp-caret edp-caret-left", True )
-                    , ( "edp-disabled", not canSelectPrevious )
-                    ]
-                ]
-                []
-            ]
-        , Html.div []
-            [ Html.text
-                (let
-                    ( monthFull, monthInt ) =
-                        getMonthInfo (Date.month model.indexDate) props.monthDisplay
-                 in
-                 monthFull ++ " " ++ (String.fromInt <| Date.year model.indexDate)
-                )
-            ]
-        , Html.div
-            [ HtmlAttr.classList
-                [ ( "edp-caret-button", True )
-                , ( "edp-disabled", canSelectNext == False )
-                ]
-            , HtmlEvents.onClick <|
-                if canSelectNext then
-                    NextMonth nextMonthIndexDate
-
-                else
-                    NoOp
-            ]
-            [ Html.div
-                [ HtmlAttr.classList
-                    [ ( "edp-caret edp-caret-right", True )
-                    , ( "edp-disabled", not canSelectNext )
-                    ]
-                ]
-                []
-            ]
-        ]
-
-
-monthChangeSectionUI : InitializedModel -> Props -> Element Msg
-monthChangeSectionUI model props =
     let
         year =
             Date.year model.indexDate
@@ -821,21 +677,8 @@ monthChangeSectionUI model props =
         ]
 
 
-weekSection : InitializedModel -> Props -> Html.Html Msg
+weekSection : InitializedModel -> Props -> Element Msg
 weekSection model props =
-    Html.div [ HtmlAttr.class "edp-body-section" ]
-        (List.map
-            (\symbol ->
-                Html.div [ HtmlAttr.class "edp-column edp-day-symbol" ] [ Html.text symbol ]
-            )
-            (List.map props.daySymbol
-                [ Sun, Mon, Tue, Wed, Thu, Fri, Sat ]
-            )
-        )
-
-
-weekSectionUI : InitializedModel -> Props -> Element Msg
-weekSectionUI model props =
     row
         [ centerX
         ]
@@ -855,67 +698,8 @@ weekSectionUI model props =
         )
 
 
-daySectionMonth : InitializedModel -> Props -> Html.Html Msg
+daySectionMonth : InitializedModel -> Props -> Element Msg
 daySectionMonth model props =
-    Html.div [ HtmlAttr.class "edp-body-section" ]
-        (List.map
-            (\( dayNum, date ) ->
-                let
-                    isSelected =
-                        case model.selectedDate of
-                            Just selected ->
-                                Date.toRataDie selected == Date.toRataDie date
-
-                            Nothing ->
-                                False
-
-                    isToday =
-                        Date.toRataDie model.today == Date.toRataDie date
-
-                    isPlaceholder =
-                        dayNum == 0
-
-                    canSelect =
-                        not isPlaceholder && props.canSelectDate date
-                in
-                Html.div
-                    [ HtmlAttr.classList
-                        [ ( "edp-column edp-day-number", True )
-                        , ( "edp-empty-column", dayNum == 0 )
-                        , ( "edp-disabled-column", not isPlaceholder && canSelect == False )
-                        , ( "edp-day-number-selected", isSelected )
-                        , ( "edp-day-number-today", isToday )
-                        ]
-                    , HtmlEvents.onClick
-                        (case ( canSelect, model.selectedDate ) of
-                            ( True, Just previousSelected ) ->
-                                if Date.toRataDie previousSelected == Date.toRataDie date then
-                                    NoOp
-
-                                else
-                                    DateSelected date previousSelected
-
-                            ( True, Nothing ) ->
-                                DateSelected date model.today
-
-                            ( False, _ ) ->
-                                NoOp
-                        )
-                    ]
-                    [ Html.text <|
-                        if isPlaceholder then
-                            "."
-
-                        else
-                            String.fromInt dayNum
-                    ]
-            )
-            model.currentMonthMap
-        )
-
-
-daySectionMonthUI : InitializedModel -> Props -> Element Msg
-daySectionMonthUI model props =
     let
         weekRows acc days =
             case List.take 7 days of
@@ -1017,58 +801,19 @@ getMonthKey date =
     Tuple.first <| getMonthInfo (Date.month date) monthDisplay
 
 
-previousMonthBody : InitializedModel -> Props -> Maybe ( String, Html.Html Msg )
+previousMonthBody : InitializedModel -> Props -> Maybe (Element Msg)
 previousMonthBody model props =
-    Maybe.map
-        (\previousMonthMap ->
-            ( getMonthKey model.indexDate ++ "-previous"
-            , Html.div
-                [ HtmlAttr.classList
-                    [ ( "edp-month-slider", True )
-                    , ( "edp-out-next", model.monthChange == Next )
-                    , ( "edp-out-previous", model.monthChange == Previous )
-                    ]
-                ]
-                [ daySectionMonth { model | currentMonthMap = previousMonthMap } props
-                ]
-            )
-        )
-        model.previousMonthMap
-
-
-previousMonthBodyUI : InitializedModel -> Props -> Maybe (Element Msg)
-previousMonthBodyUI model props =
     Maybe.map
         (\previousMonthMap ->
             el
                 [ width fill ]
-                (daySectionMonthUI { model | currentMonthMap = previousMonthMap } props)
+                (daySectionMonth { model | currentMonthMap = previousMonthMap } props)
         )
         model.previousMonthMap
 
 
-calendarBody : InitializedModel -> Props -> Html.Html Msg
+calendarBody : InitializedModel -> Props -> Element Msg
 calendarBody model props =
-    Html.Keyed.node "div"
-        [ HtmlAttr.class "edp-month-wrapper"
-        ]
-        [ Maybe.withDefault ( "only", Html.div [] [] ) (previousMonthBody model props)
-        , ( getMonthKey model.indexDate
-          , Html.div
-                [ HtmlAttr.classList
-                    [ ( "edp-month-slider", True )
-                    , ( "edp-in-next", model.monthChange == Next )
-                    , ( "edp-in-previous", model.monthChange == Previous )
-                    ]
-                ]
-                [ daySectionMonth model props
-                ]
-          )
-        ]
-
-
-calendarBodyUI : InitializedModel -> Props -> Element Msg
-calendarBodyUI model props =
     let
         animation =
             Animation.fromTo
@@ -1091,17 +836,17 @@ calendarBodyUI model props =
                 ( 0
                 , -280
                 , [ Maybe.withDefault Element.none
-                        (previousMonthBodyUI model props)
-                  , daySectionMonthUI model props
+                        (previousMonthBody model props)
+                  , daySectionMonth model props
                   ]
                 )
 
             else
                 ( -280
                 , 0
-                , [ daySectionMonthUI model props
+                , [ daySectionMonth model props
                   , Maybe.withDefault Element.none
-                        (previousMonthBodyUI model props)
+                        (previousMonthBody model props)
                   ]
                 )
     in
@@ -1120,38 +865,8 @@ calendarBodyUI model props =
         )
 
 
-bottomSection : InitializedModel -> Props -> Html.Html Msg
+bottomSection : InitializedModel -> Props -> Element Msg
 bottomSection model props =
-    let
-        disableOk =
-            model.selectedDate == Nothing
-    in
-    Html.div [ HtmlAttr.class "edp-body-section edp-bottom-section" ]
-        [ Html.button
-            [ HtmlEvents.onClick CancelClicked
-            , HtmlAttr.class "edp-button"
-            ]
-            [ Html.text props.cancelButtonText ]
-        , Html.button
-            [ HtmlAttr.classList
-                [ ( "edp-button", True )
-                , ( "edp-disabled", model.selectedDate == Nothing )
-                ]
-            , HtmlEvents.onClick
-                (case model.selectedDate of
-                    Just date ->
-                        SubmitClicked date
-
-                    Nothing ->
-                        NoOp
-                )
-            ]
-            [ Html.text props.okButtonText ]
-        ]
-
-
-bottomSectionUI : InitializedModel -> Props -> Element Msg
-bottomSectionUI model props =
     let
         disableOk =
             model.selectedDate == Nothing
@@ -1204,46 +919,8 @@ bottomSectionUI model props =
         ]
 
 
-yearSection : InitializedModel -> Props -> Html.Html Msg
+yearSection : InitializedModel -> Props -> Element Msg
 yearSection model props =
-    let
-        workingDate =
-            Maybe.withDefault model.today model.selectedDate
-
-        applyYear dt year =
-            Date.fromCalendarDate
-                year
-                (Date.month dt)
-                (Date.day dt)
-
-        viewYear year =
-            let
-                canSelect =
-                    props.canSelectYear year
-            in
-            Html.div []
-                [ Html.button
-                    [ HtmlAttr.classList
-                        [ ( "edp-button", True )
-                        , ( "edp-year-button", True )
-                        , ( "edp-year-button-selected", year == Date.year workingDate )
-                        , ( "edp-disabled", not canSelect )
-                        ]
-                    , HtmlEvents.onClick <|
-                        if canSelect then
-                            DateSelected (applyYear workingDate year) workingDate
-
-                        else
-                            NoOp
-                    ]
-                    [ Html.text (String.fromInt year) ]
-                ]
-    in
-    Html.div [ HtmlAttr.id <| "edp-year-picker-" ++ model.id, HtmlAttr.class "edp-year-picker" ] [ Html.div [ HtmlAttr.class "edp-year-picker-body" ] (List.map viewYear model.yearList) ]
-
-
-yearSectionUI : InitializedModel -> Props -> Element Msg
-yearSectionUI model props =
     let
         workingDate =
             Maybe.withDefault model.today model.selectedDate
@@ -1309,64 +986,6 @@ your view's type.
 -}
 view : Model -> Props -> Html.Html Msg
 view model props =
-    Maybe.withDefault (Html.div [ HtmlAttr.class "edp-container" ] []) <|
-        Maybe.map4
-            (\today indexDate currentMonthMap yearList ->
-                let
-                    displayDate =
-                        Maybe.withDefault today model.selectedDate
-
-                    initializedModel =
-                        { id = model.id
-                        , today = today
-                        , indexDate = indexDate
-                        , selectedDate = model.selectedDate
-                        , previousSelectedDate = model.previousSelectedDate
-                        , currentMonthMap = currentMonthMap
-                        , previousMonthMap = model.previousMonthMap
-                        , monthChange = model.monthChange
-                        , selectionMode = model.selectionMode
-                        , yearList = yearList
-                        }
-
-                    footer =
-                        if props.hideFooter then
-                            Html.div [] []
-
-                        else
-                            bottomSection initializedModel props
-
-                    mainSection =
-                        case initializedModel.selectionMode of
-                            Calendar ->
-                                Html.div []
-                                    [ monthChangeSection initializedModel props
-                                    , weekSection initializedModel props
-                                    , calendarBody initializedModel props
-                                    , footer
-                                    ]
-
-                            YearPicker ->
-                                Html.div []
-                                    [ yearSection initializedModel props
-                                    , footer
-                                    ]
-                in
-                Html.div
-                    [ HtmlAttr.class "edp-container"
-                    ]
-                    [ headerSection displayDate initializedModel props
-                    , mainSection
-                    ]
-            )
-            model.today
-            model.indexDate
-            model.currentMonthMap
-            model.yearList
-
-
-viewUI : Model -> Props -> Html.Html Msg
-viewUI model props =
     Element.layout [] <|
         Maybe.withDefault Element.none <|
             Maybe.map4
@@ -1393,7 +1012,7 @@ viewUI model props =
                                 Element.none
 
                             else
-                                bottomSectionUI initializedModel props
+                                bottomSection initializedModel props
 
                         mainSection =
                             case initializedModel.selectionMode of
@@ -1402,9 +1021,9 @@ viewUI model props =
                                         [ width fill
                                         , height fill
                                         ]
-                                        [ monthChangeSectionUI initializedModel props
-                                        , weekSectionUI initializedModel props
-                                        , calendarBodyUI initializedModel props
+                                        [ monthChangeSection initializedModel props
+                                        , weekSection initializedModel props
+                                        , calendarBody initializedModel props
                                         , footer
                                         ]
 
@@ -1413,7 +1032,7 @@ viewUI model props =
                                         [ width fill
                                         , height fill
                                         ]
-                                        [ yearSectionUI initializedModel props
+                                        [ yearSection initializedModel props
                                         , footer
                                         ]
                     in
@@ -1425,7 +1044,7 @@ viewUI model props =
                             , Font.sansSerif
                             ]
                         ]
-                        [ headerSectionUI displayDate initializedModel props
+                        [ headerSection displayDate initializedModel props
                         , mainSection
                         ]
                 )

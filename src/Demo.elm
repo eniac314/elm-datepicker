@@ -108,16 +108,6 @@ view model =
                     getDatePickerProps
                     |> Html.map DatePickerMsg
                 ]
-            , div [ style "width" "10px" ] []
-            , div
-                [ style "margin-top" "40px"
-                , style "box-shadow" "0 1px 3px rgba(0, 0, 0, 0.24)"
-                ]
-                [ DatePicker.viewUI
-                    model.datePickerData
-                    getDatePickerProps
-                    |> Html.map DatePickerMsg
-                ]
             ]
         ]
 

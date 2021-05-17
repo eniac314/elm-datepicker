@@ -13979,6 +13979,8 @@ var $abradley2$elm_datepicker$DatePicker$calendarBodyUI = F2(
 					body)));
 	});
 var $mdgriffith$elm_ui$Element$clipY = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$overflow, $mdgriffith$elm_ui$Internal$Style$classes.c4);
+var $abradley2$elm_datepicker$DatePicker$noAttr = $mdgriffith$elm_ui$Element$htmlAttribute(
+	$elm$html$Html$Attributes$class(''));
 var $mdgriffith$elm_ui$Internal$Model$boxShadowClass = function (shadow) {
 	return $elm$core$String$concat(
 		_List_fromArray(
@@ -14016,23 +14018,27 @@ var $abradley2$elm_datepicker$DatePicker$headerDayMonthDisplayUI = F4(
 								$mdgriffith$elm_ui$Element$Events$onClick(
 								$abradley2$elm_datepicker$DatePicker$SetSelectionMode(0)),
 								$mdgriffith$elm_ui$Element$Font$size(32),
-								A2($mdgriffith$elm_ui$Element$paddingXY, 10, 4),
-								$mdgriffith$elm_ui$Element$pointer
+								$mdgriffith$elm_ui$Element$pointer,
+								isPreviousDate ? A2($mdgriffith$elm_ui$Element$paddingXY, 10, 3) : A2($mdgriffith$elm_ui$Element$paddingXY, 10, 4)
 							]),
 						(!(!model.n)) ? _List_fromArray(
 							[
-								$mdgriffith$elm_ui$Element$Border$shadow(
+								(!isPreviousDate) ? $mdgriffith$elm_ui$Element$Border$shadow(
 								{
 									bz: 1,
 									bD: A4($mdgriffith$elm_ui$Element$rgba, 0, 0, 0, 0.18),
 									b2: _Utils_Tuple2(2, 2),
-									cn: 0
-								}),
+									cn: 0.5
+								}) : $abradley2$elm_datepicker$DatePicker$noAttr,
 								$mdgriffith$elm_ui$Element$Font$color(
 								A4($mdgriffith$elm_ui$Element$rgba, 1, 1, 1, 0.8))
 							]) : _List_Nil),
-					$mdgriffith$elm_ui$Element$text(
-						A2(props.av, date, model.f)));
+					A2(
+						$mdgriffith$elm_ui$Element$el,
+						_List_fromArray(
+							[$mdgriffith$elm_ui$Element$centerY]),
+						$mdgriffith$elm_ui$Element$text(
+							A2(props.av, date, model.f))));
 			},
 			date);
 	});
@@ -14040,19 +14046,6 @@ var $abradley2$elm_datepicker$DatePicker$displayYearUI = A2(
 	$elm$core$Basics$composeR,
 	$justinmimbs$date$Date$year,
 	A2($elm$core$Basics$composeR, $elm$core$String$fromInt, $mdgriffith$elm_ui$Element$text));
-var $mdgriffith$elm_ui$Element$padding = function (x) {
-	var f = x;
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$padding,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
-			'p-' + $elm$core$String$fromInt(x),
-			f,
-			f,
-			f,
-			f));
-};
 var $mdgriffith$elm_ui$Element$Font$regular = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontWeight, $mdgriffith$elm_ui$Internal$Style$classes.d6);
 var $abradley2$elm_datepicker$DatePicker$headerYearDisplayUI = F3(
 	function (displayDate, model, props) {
@@ -14063,7 +14056,7 @@ var $abradley2$elm_datepicker$DatePicker$headerYearDisplayUI = F3(
 					[
 						$mdgriffith$elm_ui$Element$Events$onClick(
 						$abradley2$elm_datepicker$DatePicker$SetSelectionMode(1)),
-						$mdgriffith$elm_ui$Element$padding(10),
+						A2($mdgriffith$elm_ui$Element$paddingXY, 10, 12),
 						$mdgriffith$elm_ui$Element$Font$size(14),
 						$mdgriffith$elm_ui$Element$pointer,
 						$mdgriffith$elm_ui$Element$Font$semiBold
@@ -14141,7 +14134,8 @@ var $abradley2$elm_datepicker$DatePicker$headerSectionUI = F3(
 					_List_fromArray(
 						[
 							$mdgriffith$elm_ui$Element$height(
-							$mdgriffith$elm_ui$Element$px(40)),
+							$mdgriffith$elm_ui$Element$px(55)),
+							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
 							$mdgriffith$elm_ui$Element$clipY
 						]),
 					_Utils_Tuple2(

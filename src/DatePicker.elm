@@ -502,7 +502,7 @@ headerYearDisplayUI : Date -> InitializedModel -> Props -> Element Msg
 headerYearDisplayUI displayDate model props =
     el
         ([ Events.onClick (SetSelectionMode YearPicker)
-         , padding 10
+         , paddingXY 10 12
          , Font.size 14
          , pointer
          , Font.semiBold
@@ -552,16 +552,24 @@ headerDayMonthDisplayUI isPreviousDate date model props =
             el
                 ([ Events.onClick <| SetSelectionMode Calendar
                  , Font.size 32
-                 , paddingXY 10 4
                  , pointer
+                 , if isPreviousDate then
+                    paddingXY 10 3
+
+                   else
+                    paddingXY 10 4
                  ]
                     ++ (if model.selectionMode /= Calendar then
-                            [ Border.shadow
-                                { offset = ( 2, 2 )
-                                , size = 0
-                                , blur = 1
-                                , color = rgba 0 0 0 0.18
-                                }
+                            [ if not isPreviousDate then
+                                Border.shadow
+                                    { offset = ( 2, 2 )
+                                    , size = 0.5
+                                    , blur = 1
+                                    , color = rgba 0 0 0 0.18
+                                    }
+
+                              else
+                                noAttr
                             , Font.color (rgba 1 1 1 0.8)
                             ]
 
@@ -569,7 +577,7 @@ headerDayMonthDisplayUI isPreviousDate date model props =
                             []
                        )
                 )
-                (text (props.selectedDateDisplay date model.indexDate))
+                (el [ centerY ] (text (props.selectedDateDisplay date model.indexDate)))
         )
         date
 
@@ -635,7 +643,8 @@ headerSectionUI displayDate model props =
         ]
         [ headerYearDisplayUI displayDate model props
         , Keyed.el
-            [ height (px 40)
+            [ height (px 55)
+            , width fill
             , clipY
             ]
             ( model.previousSelectedDate
@@ -652,18 +661,16 @@ headerSectionUI displayDate model props =
                         model
                         props
                     )
-                , Maybe.withDefault
-                    Element.none
-                    (headerDayMonthDisplayUI False
-                        (if isJust model.selectedDate then
-                            model.selectedDate
+                , headerDayMonthDisplayUI False
+                    (if isJust model.selectedDate then
+                        model.selectedDate
 
-                         else
-                            Just model.today
-                        )
-                        model
-                        props
+                     else
+                        Just model.today
                     )
+                    model
+                    props
+                    |> Maybe.withDefault Element.none
                 ]
             )
         ]
